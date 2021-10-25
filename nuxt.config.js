@@ -1,6 +1,11 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
+    script: [
+      {
+        body:true
+      }
+    ],
     title: 'keyzama',
     htmlAttrs: {
       lang: 'en'
@@ -17,7 +22,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
+  css: ['@/assets/css/resets.css','@/assets/css/normalize.css','@/assets/css/global.scss'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -29,6 +34,17 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
+    ['nuxt-fontawesome', {
+      component: 'fa', //customize component name
+      imports: [{
+          set: '@fortawesome/free-solid-svg-icons',
+          icons: ['fas']
+          },
+          {set: '@fortawesome/free-regular-svg-icons',
+          icons: ['far']
+          },
+      ]
+   }]
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -37,5 +53,6 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  }
+  },
+  ssr:false
 }
