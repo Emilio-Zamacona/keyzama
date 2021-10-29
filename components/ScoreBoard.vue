@@ -3,7 +3,7 @@
     <transition name="scoreAppear">
       <div v-if="getPlayMode!='free'" class="scoreBoard">
         <h3>{{isCorrect}}</h3>
-        <h3>{{'&#x2714;'.repeat(getCurrentGuess.length)}}</h3>
+        <h3>{{'&#x2714;'.repeat(getCurrentGuess.length) }}</h3>
         <h3>This Round: {{getRoundPoints}}</h3>
       </div>
     </transition>

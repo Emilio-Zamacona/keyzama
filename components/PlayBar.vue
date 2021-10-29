@@ -62,7 +62,7 @@ export default {
         this.changePoints(-1);
         for (let index = 0; index < sequence.length; index++) {
           setTimeout(function() {
-            if(st.state.playMode!='free'){
+            if((st.state.playMode!='free') && (st.state.resetWarning.open==false)){
               console.log('is not free')
               sampler.triggerAttackRelease(sequence[index],0.8);
               st.commit('changeState',{stateValue : 'lastNote' , newValue : sequence[index]})
@@ -84,7 +84,7 @@ export default {
     },
   },
   computed:{
-   ...mapGetters(["getCurrentGuess","getSecretNotes",'getLastNote','getPlayMode','getScales','getPiano','getRoundPoints']),
+   ...mapGetters(["getCurrentGuess","getSecretNotes",'getLastNote','getPlayMode','getScales','getPiano','getRoundPoints','getTotalPoints','getResetWarning']),
   },
 }
 </script>
@@ -93,8 +93,8 @@ export default {
 $color1:#C3FCD9;
 $color2:#73F0A3;
 $color3:#3EA365;
-$color4:#A3342E;
-$color5:#F07973;
+$color4:#504B43;
+$color5:#434371;
 .test{
   color: red !important;
 }

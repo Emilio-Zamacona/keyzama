@@ -3,8 +3,11 @@ export const state = () => ({
   secretNotes: [],
   currentGuess:[],
   lastNote:'',
+  round:0,
+  maxRounds:10,
   totalPoints:0,
   roundPoints:0,
+  resetWarning:{open:false, mode:''},
   scales:{
     major:[
       {tonic:"c", notes:['c','d','e','f','g','a','b']},
@@ -79,6 +82,8 @@ export const getters = {
   getPiano:(state)=>{
     return state.piano
   },
-  
+  getResetWarning:(state)=>{
+    return state.resetWarning
+  }
 
 }

@@ -64,12 +64,16 @@ export default {
   },
   methods: {
     isNotePlaying(key){
-      if (this.$store.state.lastNote == key) return "--playing"
+      if (this.getPlayMode!='guess'){
+        if (this.$store.state.lastNote == key) return "--playing"
+      }
     },
     playSound(key){
       const guessList = this.$store.state.currentGuess.slice();
       guessList.push(key)
-      this.$store.commit('changeState', {stateValue:'currentGuess', newValue:guessList} );
+      if (this.getPlayMode!='free'){
+        this.$store.commit('changeState', {stateValue:'currentGuess', newValue:guessList} );
+      }
       sampler.triggerAttackRelease([key],0.5);
     }
   },
