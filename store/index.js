@@ -8,6 +8,13 @@ export const state = () => ({
   totalPoints:0,
   roundPoints:0,
   resetWarning:{open:false, mode:''},
+  difficulties:{
+    easy:{notesPerRound:3, timeBetweenNotes:1600},
+    normal:{notesPerRound:5, timeBetweenNotes:1300},
+    hard:{notesPerRound:7, timeBetweenNotes:1000},
+  },
+  chosenDifficulty:'easy',
+  chosenScale:'major',
   scales:{
     major:[
       {tonic:"c", notes:['c','d','e','f','g','a','b']},
@@ -79,11 +86,29 @@ export const getters = {
   getScales:(state)=>{
     return state.scales
   },
+  getChosenScale:(state)=>{
+    return state.chosenScale
+  },
+  getChosenDifficulty:(state)=>{
+    return state.chosenDifficulty
+  },
   getPiano:(state)=>{
     return state.piano
   },
   getResetWarning:(state)=>{
     return state.resetWarning
+  },
+  getRound:(state)=>{
+    return state.round
+  },
+  roundWin:(state)=>{
+    if (state.secretNotes.length!=0){
+      return state.currentGuess.every(item => state.secretNotes.includes(item)) && 
+             state.secretNotes.every(item => state.currentGuess.includes(item)) &&
+             state.currentGuess.length==state.secretNotes.length
+    } else return false
+  },
+  gameWin:(state)=>{
+    return state.round == state.maxRounds
   }
-
 }

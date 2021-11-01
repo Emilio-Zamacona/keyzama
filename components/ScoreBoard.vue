@@ -3,8 +3,7 @@
     <transition name="scoreAppear">
       <div v-if="getPlayMode!='free'" class="scoreBoard">
         <h3>{{isCorrect}}</h3>
-        <h3>{{'&#x2714;'.repeat(getCurrentGuess.length) }}</h3>
-        <h3>This Round: {{getRoundPoints}}</h3>
+        <h3>{{'&#x2714;'.repeat(getCurrentGuess.length)+('&#183;'.repeat(getSecretNotes.length - getCurrentGuess.length))}}</h3>
       </div>
     </transition>
   </section>
@@ -28,13 +27,13 @@ export default {
             const sliced = this.getCurrentGuess.slice(0,-1);
             this.$store.commit('changeState',{stateValue:'currentGuess',newValue:sliced});
             this.$store.commit('changeState',{stateValue:'roundPoints',newValue:this.getRoundPoints>0 ? this.getRoundPoints-1 : 0})
-            return 'X' 
+            return 'Try again' 
           }
         };
         if (JSON.stringify(this.getCurrentGuess)==JSON.stringify(this.getSecretNotes)) {
           this.$store.commit("changeState",{stateValue:'totalPoints',newValue:(this.getTotalPoints + this.getRoundPoints)})
         }
-        return (JSON.stringify(this.getCurrentGuess)==JSON.stringify(this.getSecretNotes) ? 'Correct!':'Correct so far')
+        return (JSON.stringify(this.getCurrentGuess)==JSON.stringify(this.getSecretNotes) ? 'Correct!':'')
       } 
     },
   }
@@ -42,11 +41,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$color1:#C3FCD9;
-$color2:#73F0A3;
-$color3:#3EA365;
-$color4:#504B43;
-$color5:#434371;
+
 .scoreBoard{
   display: flex;
   flex-direction: row;

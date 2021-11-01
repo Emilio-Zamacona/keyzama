@@ -36,11 +36,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$color1:#C3FCD9;
-$color2:#73F0A3;
-$color3:#3EA365;
-$color4:#504B43;
-$color5:#434371;
+
 .navBar{
   display: flex;
   justify-content: space-between;
@@ -66,10 +62,10 @@ $color5:#434371;
     &__item{
       padding-inline: 1rem;
       font-size: 2rem;
-      color: $color4;
+      color: $color5;
       transition: .2s;
       &:hover{
-        color: $color2;
+        color: $color1;
       }
     }
   }

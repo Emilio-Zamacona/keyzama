@@ -22,11 +22,11 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['@/assets/css/resets.css','@/assets/css/normalize.css','@/assets/css/global.scss'
+  css: ['@/assets/css/resets.css','@/assets/css/normalize.css','@/assets/css/global.scss','@/assets/scss/colors.scss'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
+  plugins: ['@/plugins/commonMethods.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -49,7 +49,11 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/style-resources'
   ],
+  styleResources: {
+    scss: ['./assets/scss/*.scss']
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

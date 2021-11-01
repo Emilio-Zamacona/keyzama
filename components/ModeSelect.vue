@@ -48,11 +48,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$color1:#C3FCD9;
-$color2:#73F0A3;
-$color3:#3EA365;
-$color4:#504B43;
-$color5:#434371;
+
 .mode{
   &__title{
     color: $color4;
@@ -64,13 +60,13 @@ $color5:#434371;
     justify-content: space-evenly;
     &__item{
       display: flex;
-      color: $color4;
+      color: $color5;
       font-size: 2rem;
       font-weight: lighter !important;
       transition: 0.2s;
       &:hover{
         cursor: pointer;
-        color: $color2;
+        color: $color1;
       }
       &:active{
         transform: scale(1.2);

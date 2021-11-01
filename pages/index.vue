@@ -10,10 +10,12 @@
     <transition 
       name="pianoAppear" 
       mode="out-in">
-      <div v-if="getPlayMode!=''">
-        <Piano/>
+      <div class="body__pianoFrame" v-if="getPlayMode!=''">
+        <Piano class="body__pianoFrame__piano"/>
       </div>
     </transition>
+    <CorrectSequence/>
+    <Win/>
   </section>
 </template>
 
@@ -26,33 +28,38 @@ export default {
   },
   methods:{},
   computed:{
-    ...mapGetters(["getCurrentGuess","getSecretNotes","getTotalPoints","getRoundPoints","getPlayMode"]),
+    ...mapGetters(["getCurrentGuess","getSecretNotes","getTotalPoints","getRoundPoints","getPlayMode",'getRound']),
   }
 }
 </script>
 <style lang="scss" scoped>
-$color1:#C3FCD9;
-$color2:#73F0A3;
-$color3:#3EA365;
-$color4:#504B43;
-$color5:#434371;
+
 .body{
   .modeSelect{
   display: flex;
   flex-direction: column; 
   position: relative;
+  justify-content: center;
   &__title{
     position: absolute;
     top: 10rem;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: $color4;
+    color: $color5;
     }
   &__options{
     position: absolute;
     top: 20rem;
     left: 50%;
     transform: translate(-50%, -50%);
+    }
+  }
+  &__pianoFrame{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &__piano{
+      width: 100%;
     }
   }
 }

@@ -37,11 +37,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$color1:#C3FCD9;
-$color2:#73F0A3;
-$color3:#3EA365;
-$color4:#504B43;
-$color5:#434371;
 
 .resetModal{
   background: rgba(0, 0, 0, 0.75);

@@ -12,6 +12,7 @@
       @click="playSound(pianoKey.name)">
       </div>
     </div>
+    <h2>{{getTotalPoints}} </h2>
   </div>
 </template>
 
@@ -69,16 +70,18 @@ export default {
       }
     },
     playSound(key){
-      const guessList = this.$store.state.currentGuess.slice();
-      guessList.push(key)
-      if (this.getPlayMode!='free'){
-        this.$store.commit('changeState', {stateValue:'currentGuess', newValue:guessList} );
+      if(this.getLastNote==''){
+        if (this.getPlayMode!='free'){
+          const guessList = this.$store.state.currentGuess.slice();
+          guessList.push(key)
+          this.$store.commit('changeState', {stateValue:'currentGuess', newValue:guessList} );
+        }
+        sampler.triggerAttackRelease([key],0.5);
       }
-      sampler.triggerAttackRelease([key],0.5);
     }
   },
   computed: {
-    ...mapGetters(["getCurrentGuess","getSecretNotes",'getLastNote','getPlayMode','getScales','getPiano','getRoundPoints']),
+    ...mapGetters(["getCurrentGuess","getSecretNotes",'getLastNote','getPlayMode','getScales','getPiano','getRoundPoints','getTotalPoints']),
     currentGuess(){
       return this.$store.state.currentGuess
     },
@@ -90,11 +93,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$color1:#C3FCD9;
-$color2:#73F0A3;
-$color3:#3EA365;
-$color4:#504B43;
-$color5:#434371;
+
 .--playing{
   z-index: 1.5;
   background: linear-gradient(290deg, rgb(145, 255, 233) 25%, rgb(85, 238, 251) 75%) !important;
@@ -103,13 +102,13 @@ $color5:#434371;
   box-shadow: 0 0 10em rgba(0, 247, 255, 1) !important;
 }
 .--white{
-  background: radial-gradient(ellipse at 0 0%,  #fbfcfd 50%, #d6d6d6 100%);
+  background: radial-gradient(ellipse at 0 0%,  #e8f8f3 50%, #bff6e5 100%);
   height: 20rem;
   width: 8%;
   z-index:1;
 }
 .--black{
-  background: linear-gradient(290deg, rgba(0,0,0,1) 25%, rgb(73, 73, 73) 75%);
+  background: linear-gradient(290deg, rgb(15, 41, 42) 25%, rgb(32, 70, 70) 75%);
   height: 12rem;
   width: 4%;
   z-index:2;
@@ -119,12 +118,14 @@ $color5:#434371;
 }
 .main{
   padding: 2em;
-  margin: 0;
-  background: $color3;
+  margin: 4rem;
+  background: $color4;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  max-width: 1000px;
+  border-radius: 2rem;
 
   &__bar{
     width: 100%;
@@ -139,8 +140,7 @@ $color5:#434371;
     width: 80%;
     max-width: 1000px;
     min-width: 400px;
-    border: $color2 14px solid;
-    border-radius: 1rem;
+
     &__key{
       border-block: solid 1px black;
       border-left: solid 1px black;
