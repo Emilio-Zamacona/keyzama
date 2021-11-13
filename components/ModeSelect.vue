@@ -1,17 +1,17 @@
 <template>
   <section class="mode">
     <ul class="mode__list">
-      <li @click="()=>{resetWarning('memory');setPlayMode('memory')}" class="mode__list__item">
-        <fa :icon="['fas','brain']" />
-        <strong class="mode__list__item__text">Memory</strong>
+      <li @click="()=>{resetWarning('memory');setPlayMode('memory')}" class="navButton" :class="selectedHighlight('memory')">
+        <fa class="navButton__icon" :icon="['fas','brain']" />
+        <strong class="navButton__text">Memory</strong>
       </li>
-      <li @click="()=>{resetWarning('guess');setPlayMode('guess')}" class="mode__list__item">
-        <fa :icon="['fas','headphones']" />
-        <strong class="mode__list__item__text">Ear training</strong> 
+      <li @click="()=>{resetWarning('guess');setPlayMode('guess')}" class="navButton" :class="selectedHighlight('guess')">
+        <fa class="navButton__icon" :icon="['fas','headphones']" />
+        <strong class="navButton__text">Ear training</strong> 
       </li>
-      <li @click="()=>{resetWarning('free');setPlayMode('free')}" class="mode__list__item">
-        <fa :icon="['fas','music']" />
-        <strong class="mode__list__item__text">Free</strong> 
+      <li @click="()=>{resetWarning('free');setPlayMode('free')}" class="navButton" :class="selectedHighlight('free')">
+        <fa class="navButton__icon" :icon="['fas','music']" />
+        <strong class="navButton__text">Free</strong> 
       </li>
     </ul>
     <transition name="resetFade">
@@ -42,12 +42,25 @@ export default {
         console.log(this.getSecretNotes!=[],this.getCurrentGuess!=[],this.getLastNote!='',this.getTotalPoints!=0)
         console.log('reset prompt')
       } else {console.log('nothing to reset')}
+    },
+    selectedHighlight:function(mode){
+      if (this.getPlayMode==mode){
+        return "--selected";
+      } else return ""
+
     }
   }
 }
 </script>
 
+
 <style lang="scss" scoped>
+
+@import '@/assets/css/mixins.scss';
+.--selected{
+  color: $color1;
+
+}
 
 .mode{
   &__title{
@@ -58,21 +71,17 @@ export default {
     list-style-type: none;
     display: flex;
     justify-content: space-evenly;
-    &__item{
-      display: flex;
-      color: $color5;
-      font-size: 2rem;
-      font-weight: lighter !important;
-      transition: 0.2s;
-      &:hover{
-        cursor: pointer;
-        color: $color1;
-      }
-      &:active{
-        transform: scale(1.2);
+    .navButton{
+
+      &__icon{
+        @include respond(mobile){
+          font-size: 2rem;
+        }
       }
       &__text{
-        padding-inline: 1rem;
+        @include respond(tablet){
+          display: none;
+        }
       }
     }
   }

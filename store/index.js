@@ -4,10 +4,11 @@ export const state = () => ({
   currentGuess:[],
   lastNote:'',
   round:0,
-  maxRounds:10,
+  maxRounds:5,
   totalPoints:0,
   roundPoints:0,
   resetWarning:{open:false, mode:''},
+  settingsOpen: false,
   difficulties:{
     easy:{notesPerRound:3, timeBetweenNotes:1600},
     normal:{notesPerRound:5, timeBetweenNotes:1300},
@@ -83,6 +84,9 @@ export const getters = {
   getPlayMode:(state)=>{
     return state.playMode
   },
+  getSettingsOpen:(state)=>{
+    return state.settingsOpen
+  },
   getScales:(state)=>{
     return state.scales
   },
@@ -103,9 +107,7 @@ export const getters = {
   },
   roundWin:(state)=>{
     if (state.secretNotes.length!=0){
-      return state.currentGuess.every(item => state.secretNotes.includes(item)) && 
-             state.secretNotes.every(item => state.currentGuess.includes(item)) &&
-             state.currentGuess.length==state.secretNotes.length
+      return state.currentGuess.equals(state.secretNotes)
     } else return false
   },
   gameWin:(state)=>{

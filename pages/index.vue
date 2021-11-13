@@ -14,8 +14,12 @@
         <Piano class="body__pianoFrame__piano"/>
       </div>
     </transition>
+    <transition name="pianoAppear">
+      <Footer v-if="getPlayMode!=''"/>
+    </transition>
     <CorrectSequence/>
     <Win/>
+    
   </section>
 </template>
 
@@ -38,8 +42,8 @@ export default {
   .modeSelect{
   display: flex;
   flex-direction: column; 
-  position: relative;
   justify-content: center;
+  align-items: center;
   &__title{
     position: absolute;
     top: 10rem;
@@ -58,9 +62,10 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    &__piano{
-      width: 100%;
-    }
+    background: $color4;
+    width: 100%;
+
+
   }
 }
 

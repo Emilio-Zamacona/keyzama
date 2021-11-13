@@ -27,7 +27,7 @@ export default {
             const sliced = this.getCurrentGuess.slice(0,-1);
             this.$store.commit('changeState',{stateValue:'currentGuess',newValue:sliced});
             this.$store.commit('changeState',{stateValue:'roundPoints',newValue:this.getRoundPoints>0 ? this.getRoundPoints-1 : 0})
-            return 'Try again' 
+            return '' 
           }
         };
         if (JSON.stringify(this.getCurrentGuess)==JSON.stringify(this.getSecretNotes)) {
@@ -48,6 +48,7 @@ export default {
   justify-content: space-evenly;
   color: $color2;
   font-size: 3rem;
+  min-height: 3rem;
 }
 .scoreAppear-enter-active{
   animation: scoreAppear .7s ease;

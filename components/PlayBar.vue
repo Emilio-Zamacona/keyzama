@@ -3,12 +3,23 @@
     <div class="playBar">
       <transition name="playBarAppear" mode="out-in">
         <div v-if="getPlayMode!='free'">
-          <fa :icon="['fas','play-circle']" 
-            class="playBar__button" @click="playSequence()"
-            />
-          <fa :icon="['fas','sync-alt']" 
-            class="playBar__button" @click="()=>{newSequence(5,getChosenScale);playSequence()}"
-            />
+          <div v-if="getSecretNotes.length==0">
+            <!-- TRATAR DE CONSTRUIR UN MÉTODO PARA QUE LOS TOOLTIP SE PONGAN ARRIBA DEL ELEMENTO HOVER CORRESPONDIENTE -->
+            <!-- <Tooltip class="--tooltip" v-if="tooltips.start" :text="'Press to start'" />  -->
+            <fa :icon="['fas','play-circle']" 
+              class="playBar__button" @click="()=>{newSequence(this.$store.state.difficulties[this.getChosenDifficulty].notesPerRound,this.getChosenScale);playSequence()}"
+              @mouseover="tooltips.start= true"
+              @mouseout="tooltips.start=false"/>
+            
+          </div>
+          <div v-else>
+            <fa :icon="['fas','play-circle']" 
+              class="playBar__button" @click="playSequence()"
+              />
+            <fa :icon="['fas','sync-alt']" 
+              class="playBar__button" @click="()=>{newSequence(this.$store.state.difficulties[this.getChosenDifficulty].notesPerRound,this.getChosenScale);playSequence()}"
+              />
+          </div>
         </div>
       </transition>
     </div>
@@ -20,18 +31,29 @@ import { mapMutations } from 'vuex';
 import { mapGetters } from "vuex";
 export default {
   data: ()=> {
-    return {}
+    return {
+      tooltips:{
+        start:false
+      }
+    }
  },
-  methods:{
-
-  },
+  methods:{},
+  components:{},
   computed:{
-   ...mapGetters(["getCurrentGuess","getSecretNotes",'getLastNote','getPlayMode','getScales','getPiano','getRoundPoints','getTotalPoints','getResetWarning','getChosenScale']),
+   ...mapGetters(["getCurrentGuess","getSecretNotes",'getLastNote','getPlayMode','getScales','getPiano','getRoundPoints','getTotalPoints','getResetWarning','getChosenScale','getChosenDifficulty']),
   },
 }
 </script>
 
 <style lang="scss" scoped>
+.--tooltip{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 6;
+  
+}
+
 .playBar{
   height: 3rem;
   padding: 1rem;

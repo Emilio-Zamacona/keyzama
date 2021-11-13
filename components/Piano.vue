@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <div class="main__bar">
-      <PlayBar/>
+      
       <ScoreBoard/>
     </div>
     <div class="main__keyboard">
@@ -9,10 +9,11 @@
       :ref="pianoKey.name"
       :class="[pianoKey.color=='white' ? '--white':'--black',
       isNotePlaying(pianoKey.name)]"
-      @click="playSound(pianoKey.name)">
+      @mousedown="($event)=>{playSound(pianoKey.name); isNoteCorrect(pianoKey.name, $event)}"
+      >
       </div>
     </div>
-    <h2>{{getTotalPoints}} </h2>
+    <PlayBar/>
   </div>
 </template>
 
@@ -78,6 +79,16 @@ export default {
         }
         sampler.triggerAttackRelease([key],0.5);
       }
+    },
+    isNoteCorrect: function(key, event){
+      if(this.getPlayMode!='free' && this.getSecretNotes.length!=0 && this.getLastNote==''){
+        const note = this.getSecretNotes[this.getCurrentGuess.length-1];
+        const answer = note==key ? "--correct" : "--wrong";
+        event.target.classList.add(answer);
+        setTimeout(function(){
+          event.target.classList.remove(answer);
+        },1300)
+      }
     }
   },
   computed: {
@@ -93,7 +104,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.--correct{
+    z-index: 1.5;
+  background: linear-gradient(290deg, rgb(145, 255, 160) 25%, rgb(85, 251, 85) 75%) !important;
+  border-inline-color: rgba(0, 255, 64, 0.726);
+  border-block-color: rgba(0, 255, 0, 0);
+  box-shadow: 0 0 10em rgb(0, 255, 0) !important;
+}
 
+.--wrong{
+    z-index: 1.5;
+  background: linear-gradient(290deg, rgb(255, 145, 145) 25%, rgb(251, 91, 85) 75%) !important;
+  border-inline-color: rgba(255, 0, 0, 0.726);
+  border-block-color: rgba(255, 0, 0, 0);
+  box-shadow: 0 0 10em rgb(255, 38, 0) !important;
+}
 .--playing{
   z-index: 1.5;
   background: linear-gradient(290deg, rgb(145, 255, 233) 25%, rgb(85, 238, 251) 75%) !important;
@@ -117,30 +142,32 @@ export default {
 
 }
 .main{
-  padding: 2em;
-  margin: 4rem;
-  background: $color4;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr auto 1fr;
+  grid-gap: 2rem;
+  justify-items: center;
   align-items: center;
-  max-width: 1000px;
+  align-content: space-around;
   border-radius: 2rem;
 
   &__bar{
     width: 100%;
     display: flex;
     justify-content: space-around;
+    min-height: 3rem;
 
   }
   &__keyboard {
     display: flex;
     justify-content: center;
     align-content: center;
-    width: 80%;
-    max-width: 1000px;
+    width: 100%;
+    max-width: 800px;
     min-width: 400px;
-
+    box-shadow:
+      0 0 .5rem .25rem $color2;
     &__key{
       border-block: solid 1px black;
       border-left: solid 1px black;

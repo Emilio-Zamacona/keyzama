@@ -1,10 +1,10 @@
 <template>
   <div class="resetModal">
-    <div class="resetModal__box">
-      <h2 class="resetModal__box__title">Changing modes will reset the progress of your current game. Change modes anyway?</h2>
-      <div class="resetModal__box__buttons">
-        <button @click="()=>{resetGame(); resetWarningOff()} " class="resetModal__box__buttons__item">Change</button>
-        <button @click="resetWarningOff()" class="resetModal__box__buttons__item">Cancel</button>
+    <div class="buttonBoxNotification">
+      <h2>Changing modes will reset the progress of your current game. Change modes anyway?</h2>
+      <div>
+        <button @click="()=>{resetGame(); resetWarningOff()}">Change</button>
+        <button @click="resetWarningOff()">Cancel</button>
       </div>
     </div>
   </div>
@@ -51,13 +51,14 @@ export default {
   z-index: 3;
   &__box{
     padding: 2rem;
-    background-color: $color3;
+    background-color: $color5;
     border: $color2 solid 10px;
     border-radius: 1rem;
     max-width: 600px;
     &__title{
       padding: 2rem;
       text-align: center;
+      color: $color1;
     }
     &__buttons{
       display: flex;
@@ -65,18 +66,18 @@ export default {
       &__item{
         margin-inline:2rem;
         padding: 1rem;
-        background-color: $color1;
-        color: $color4;
-        font-size: 1.5rem;
-        border-style: hidden;
-        border: $color2 solid 5px;
+        background-color: $color2;
+        color: $color5;
+        font-size: 2rem;
+        font-weight: 600;
         border-radius: 1rem;
         transition: .1s;
         &:hover{
-          transform: scale(1.1);
+          transform: scale(1.03);
         }
         &:active{
-          background-color: $color2;
+          background-color: $color1;
+          color: $color2;
         }
       }
     }
