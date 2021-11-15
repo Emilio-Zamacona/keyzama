@@ -8,13 +8,14 @@
     <transition name="modeAppearReverse">
       <ul v-if="getPlayMode!=''" class="navBar__options">
         <li >
-          <fa class="navButton" :icon="['fas','question-circle']" />
+          <fa class="navButton" :icon="['fas','info-circle']" />
         </li>
+        <!--    
         <li>
           <fa class="navButton" :icon="['fas','clipboard-list']" />
-        </li>
+        </li> -->
         <li>
-          <fa @click="$store.commit('changeState',{stateValue:'settingsOpen',newValue: !getSettingsOpen}) " class="navButton" :icon="['fas','sliders-h']" />
+          <fa @click="$store.commit('changeState',{stateValue:'settingsOpen',newValue: !getSettingsOpen}) " class="navButton" :icon="['fas','cog']" />
         </li>
       </ul>
     </transition>
@@ -45,7 +46,7 @@ export default {
 .navBar{
   display: flex;
   justify-content: space-between;
-  margin: 1rem 0 1rem 0;
+  margin: 0;
   height: 3rem;
   width: 100%;
   &__left{

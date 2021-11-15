@@ -63,6 +63,9 @@ export default {
 }
 
 .mode{
+    display: flex;
+    justify-content: center;
+    align-items: center;
   &__title{
     color: $color4;
     text-align: center;
@@ -72,13 +75,14 @@ export default {
     display: flex;
     justify-content: space-evenly;
     .navButton{
-
+      padding: .5rem;
       &__icon{
         @include respond(mobile){
-          font-size: 2rem;
+          font-size: 1.5rem;
         }
       }
       &__text{
+        font-size: .75em;
         @include respond(tablet){
           display: none;
         }

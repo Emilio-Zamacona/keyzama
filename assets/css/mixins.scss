@@ -1,6 +1,6 @@
 @mixin respond ($breakpoint) {
   @if $breakpoint==tablet {
-    @media only screen and (max-width: 600px) {
+    @media only screen and (max-width: 768px) {
       @content;
     }
   }
@@ -8,5 +8,17 @@
     @media only screen and (max-width: 480px) {
       @content;
     }
+  }
+  @if $breakpoint==smallest {
+    @media only screen and (max-height: 325px) {
+      @content;
+    }
+  }
+}
+
+@mixin landscape (){
+  @media screen and(orientation:landscape){
+    @content
+    
   }
 }

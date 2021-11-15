@@ -55,10 +55,9 @@ export default {
 }
 
 .playBar{
-  height: 3rem;
-  padding: 1rem;
+  margin: 0;
   &__button{
-    font-size: 3rem;
+    font-size: 2em;
     color: $color2;
     transition: 0.1s;
     &:hover{

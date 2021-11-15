@@ -1,9 +1,6 @@
 <template>
   <div class="main">
-    <div class="main__bar">
-      
-      <ScoreBoard/>
-    </div>
+    <PlayBar/>
     <div class="main__keyboard">
       <div v-for="pianoKey in piano" :key="pianoKey.name" class="main__keyboard__key" 
       :ref="pianoKey.name"
@@ -13,7 +10,10 @@
       >
       </div>
     </div>
-    <PlayBar/>
+    
+    <div class="main__bar">
+      <ScoreBoard/>
+    </div>
   </div>
 </template>
 
@@ -104,6 +104,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/css/mixins.scss';
 .--correct{
     z-index: 1.5;
   background: linear-gradient(290deg, rgb(145, 255, 160) 25%, rgb(85, 251, 85) 75%) !important;
@@ -128,36 +129,47 @@ export default {
 }
 .--white{
   background: radial-gradient(ellipse at 0 0%,  #e8f8f3 50%, #bff6e5 100%);
-  height: 20rem;
+  max-height: 20rem;
+  height: 40vh;
   width: 8%;
   z-index:1;
+  @include landscape{
+    height: 50vh;
+  }
 }
 .--black{
   background: linear-gradient(290deg, rgb(15, 41, 42) 25%, rgb(32, 70, 70) 75%);
-  height: 12rem;
+  max-height: 13.5rem;
+  height: 30vh;
   width: 4%;
   z-index:2;
   margin:0 -2% 0 -2%;
   box-shadow: 2px 2px 3px 2px rgba(0, 0, 0, 0.356);
-
+  @include landscape{
+    height: 35vh;
+  }
 }
 .main{
+  height: 100%;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr auto 1fr;
-  grid-gap: 2rem;
   justify-items: center;
   align-items: center;
-  align-content: space-around;
-  border-radius: 2rem;
+  align-content: center;
+  @include landscape{
+    margin-inline: 1rem;
+  }
+  @include respond(smallest){
+    grid-template-rows: 1fr auto 1fr;
+  }
 
   &__bar{
     width: 100%;
     display: flex;
     justify-content: space-around;
     min-height: 3rem;
-
   }
   &__keyboard {
     display: flex;
@@ -165,7 +177,7 @@ export default {
     align-content: center;
     width: 100%;
     max-width: 800px;
-    min-width: 400px;
+
     box-shadow:
       0 0 .5rem .25rem $color2;
     &__key{
