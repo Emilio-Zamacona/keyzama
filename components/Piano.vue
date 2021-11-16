@@ -6,7 +6,7 @@
       :ref="pianoKey.name"
       :class="[pianoKey.color=='white' ? '--white':'--black',
       isNotePlaying(pianoKey.name)]"
-      @mousedown="($event)=>{playSound(pianoKey.name); isNoteCorrect(pianoKey.name, $event)}"
+      @mousedown="($event)=>{playSound(pianoKey.name); isNoteCorrect(pianoKey.name, $event);isCorrect()}"
       >
       </div>
     </div>
@@ -154,7 +154,7 @@ export default {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr auto 1fr;
+  grid-template-rows: .75fr 2fr 1fr;
   justify-items: center;
   align-items: center;
   align-content: center;
@@ -162,7 +162,7 @@ export default {
     margin-inline: 1rem;
   }
   @include respond(smallest){
-    grid-template-rows: 1fr auto 1fr;
+    grid-template-rows: .75fr 2fr 1fr;
   }
 
   &__bar{

@@ -37,7 +37,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-
+@import '@/assets/css/mixins.scss';
 .body{
   .modeSelect{
   display: flex;
@@ -50,6 +50,9 @@ export default {
     left: 50%;
     transform: translate(-50%, -50%);
     color: $color5;
+    @include respond(tablet){
+      font-size: 1.5rem;
+    }
     }
   &__options{
     position: absolute;

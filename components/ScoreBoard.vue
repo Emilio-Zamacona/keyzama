@@ -2,8 +2,8 @@
   <section>
     <transition name="scoreAppear">
       <div v-if="getPlayMode!='free'" class="scoreBoard">
-        <h3>{{isCorrect}}</h3>
-        <h3>{{'&#x2714;'.repeat(getCurrentGuess.length)+('&#183;'.repeat(getSecretNotes.length - getCurrentGuess.length))}}</h3>
+        <!-- <h3>{{isCorrect}}</h3> -->
+        <strong>{{(getSecretNotes==0 ? 'Press Play to Start':'')+'&#x2714;'.repeat(getCurrentGuess.length)+('&#183;'.repeat(getSecretNotes.length - getCurrentGuess.length))}}</strong>
       </div>
     </transition>
   </section>
@@ -18,7 +18,8 @@ export default {
   },
   computed:{
     ...mapGetters(["getCurrentGuess","getSecretNotes","getTotalPoints","getRoundPoints","getPlayMode"]),
-    isCorrect(){
+    /* DEJANDO ESTO DE ABAJO POR LAS DUDAS */
+/*     isCorrect(){
       if (this.getCurrentGuess.length==0){
         return ''
       } else {
@@ -35,20 +36,31 @@ export default {
         }
         return (JSON.stringify(this.getCurrentGuess)==JSON.stringify(this.getSecretNotes) ? 'Correct!':'')
       } 
-    },
+    }, */
   }
 }
 </script>
 
 <style lang="scss" scoped>
-
+@import '@/assets/css/mixins.scss';
 .scoreBoard{
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  color: $color2;
+  background: $color2;
+  color: $color5;
+  padding-inline: .5rem;
   font-size: 3rem;
-  min-height: 3rem;
+  min-height: 2rem;
+  min-width: 30vw;
+  max-width: 28rem;
+  border-radius: .5rem;
+  font-size: 2rem;
+  padding: 1rem;
+  @include respond(tablet){
+    font-size: 1.25rem;
+    padding: .25rem;
+  }
 }
 .scoreAppear-enter-active{
   animation: scoreAppear .7s ease;
