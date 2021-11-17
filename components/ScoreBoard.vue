@@ -3,7 +3,7 @@
     <transition name="scoreAppear">
       <div v-if="getPlayMode!='free'" class="scoreBoard">
         <!-- <h3>{{isCorrect}}</h3> -->
-        <strong>{{(getSecretNotes==0 ? 'Press Play to Start':'')+'&#x2714;'.repeat(getCurrentGuess.length)+('&#183;'.repeat(getSecretNotes.length - getCurrentGuess.length))}}</strong>
+        <strong>{{(getSecretNotes==0 ? st.strings.pressPlay[getLang]:'')+'&#x2714;'.repeat(getCurrentGuess.length)+('&#183;'.repeat(getSecretNotes.length - getCurrentGuess.length))}}</strong>
       </div>
     </transition>
   </section>
@@ -17,7 +17,7 @@ export default {
     return {}
   },
   computed:{
-    ...mapGetters(["getCurrentGuess","getSecretNotes","getTotalPoints","getRoundPoints","getPlayMode"]),
+    ...mapGetters(["getCurrentGuess","getSecretNotes","getTotalPoints","getRoundPoints","getPlayMode",'getLang']),
     /* DEJANDO ESTO DE ABAJO POR LAS DUDAS */
 /*     isCorrect(){
       if (this.getCurrentGuess.length==0){

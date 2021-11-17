@@ -2,12 +2,17 @@
   <div class="main">
     <PlayBar/>
     <div class="main__keyboard">
-      <div v-for="pianoKey in piano" :key="pianoKey.name" class="main__keyboard__key" 
+      <div v-for="pianoKey in piano" :key="pianoKey.id" class="main__keyboard__key" 
       :ref="pianoKey.name"
       :class="[pianoKey.color=='white' ? '--white':'--black',
       isNotePlaying(pianoKey.name)]"
       @mousedown="($event)=>{playSound(pianoKey.name); isNoteCorrect(pianoKey.name, $event);isCorrect()}"
       >
+        <strong
+        class="main__keyboard__key__text"
+        v-if="getExplicitNotes==true" 
+        :class="pianoKey.color=='white' ? '--white__text':'--black__text'"
+        >{{st.strings.notes[noteToText(pianoKey.name)][getLang]}}</strong>
       </div>
     </div>
     
@@ -65,6 +70,12 @@ export default {
     }
   },
   methods: {
+    noteToText(note){
+      let text = note.slice(0,1);
+      if (note[1]=='#'){
+        text = text+'S';
+      } return text
+    },
     isNotePlaying(key){
       if (this.getPlayMode!='guess'){
         if (this.$store.state.lastNote == key) return "--playing"
@@ -72,12 +83,12 @@ export default {
     },
     playSound(key){
       if(this.getLastNote==''){
+        sampler.triggerAttackRelease([key],0.5);
         if (this.getPlayMode!='free'){
           const guessList = this.$store.state.currentGuess.slice();
           guessList.push(key)
           this.$store.commit('changeState', {stateValue:'currentGuess', newValue:guessList} );
         }
-        sampler.triggerAttackRelease([key],0.5);
       }
     },
     isNoteCorrect: function(key, event){
@@ -92,7 +103,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["getCurrentGuess","getSecretNotes",'getLastNote','getPlayMode','getScales','getPiano','getRoundPoints','getTotalPoints']),
+    ...mapGetters(["getCurrentGuess","getSecretNotes",'getLastNote','getPlayMode','getScales','getPiano','getRoundPoints','getTotalPoints','getExplicitNotes','getLang']),
     currentGuess(){
       return this.$store.state.currentGuess
     },
@@ -136,6 +147,14 @@ export default {
   @include landscape{
     height: 50vh;
   }
+  display: flex;
+  justify-content: center;
+  align-items:flex-end;
+  &__text{
+    margin-bottom: 1rem;
+    color: $color5;
+    user-select: none;
+  }
 }
 .--black{
   background: linear-gradient(290deg, rgb(15, 41, 42) 25%, rgb(32, 70, 70) 75%);
@@ -147,6 +166,14 @@ export default {
   box-shadow: 2px 2px 3px 2px rgba(0, 0, 0, 0.356);
   @include landscape{
     height: 35vh;
+  }
+  display: flex;
+  justify-content: center;
+  align-items:flex-end;
+  &__text{
+    margin-bottom: 1rem;
+    color: $color2;
+    user-select: none;
   }
 }
 .main{
@@ -195,6 +222,13 @@ export default {
       }
       &:last-child{
         border: solid 1px black;
+      }
+      &__text{
+        font-size: .75rem;
+        margin-inline: 0;
+        @include respond(mobile){
+          font-size: .4rem;
+        }
       }
     }
   }

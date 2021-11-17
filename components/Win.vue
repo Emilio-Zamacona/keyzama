@@ -3,9 +3,9 @@
     <transition>
       <div class="win" v-if="gameWin">
         <div class="buttonBoxNotification">
-          <h1>You won! </h1>
-          <h2>your score: {{getTotalPoints}} </h2>
-          <button @click="winAndReset()">Go back</button>
+          <h1>{{st.strings.victory[getLang]}}</h1>
+          <h2>{{st.strings.yourScore[getLang] + getTotalPoints}}</h2>
+          <button @click="winAndReset()">{{st.strings.goBack[getLang]}}</button>
         </div>
       </div>
     </transition>
@@ -21,7 +21,7 @@ export default {
   },
   methods:{},
   computed:{
-    ...mapGetters(["getCurrentGuess","getSecretNotes","getTotalPoints","getRoundPoints","getPlayMode",'getRound','gameWin']),
+    ...mapGetters(["getCurrentGuess","getSecretNotes","getTotalPoints","getRoundPoints","getPlayMode",'getRound','gameWin','getLang']),
   }
 }
 </script>

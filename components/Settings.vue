@@ -2,9 +2,9 @@
   <div>
     <section class="settings">
         <ul class="settings__difficulty">
-          <li class="settings__difficulty__option" @click="setDifficulty('easy')">Easy</li>
-          <li class="settings__difficulty__option" @click="setDifficulty('normal')">Normal</li>
-          <li class="settings__difficulty__option" @click="setDifficulty('hard')">Hard</li>
+          <li class="settings__difficulty__option" @click="setDifficulty('easy')">{{st.strings.easy[getLang]}}</li>
+          <li class="settings__difficulty__option" @click="setDifficulty('normal')">{{st.strings.normal[getLang]}}</li>
+          <li class="settings__difficulty__option" @click="setDifficulty('hard')">{{st.strings.hard[getLang]}}</li>
         </ul>
     </section> 
   </div>
@@ -23,7 +23,7 @@ export default {
     }
   },
   computed:{
-    ...mapGetters(["getCurrentGuess","getSecretNotes","getTotalPoints","getRoundPoints","getPlayMode",'getRound']),
+    ...mapGetters(["getCurrentGuess","getSecretNotes","getTotalPoints","getRoundPoints","getPlayMode",'getRound','getLang']),
   }
 }
 </script>

@@ -3,15 +3,21 @@
     <ul class="mode__list">
       <li @click="()=>{resetWarning('memory');setPlayMode('memory')}" class="navButton" :class="selectedHighlight('memory')">
         <fa class="navButton__icon" :icon="['fas','brain']" />
-        <strong class="navButton__text">Memory</strong>
+        <strong class="navButton__text">
+          {{st.strings.memory[getLang]}}
+        </strong>
       </li>
       <li @click="()=>{resetWarning('guess');setPlayMode('guess')}" class="navButton" :class="selectedHighlight('guess')">
         <fa class="navButton__icon" :icon="['fas','headphones']" />
-        <strong class="navButton__text">Ear training</strong> 
+        <strong class="navButton__text">
+          {{st.strings.guess[getLang]}}
+        </strong> 
       </li>
       <li @click="()=>{resetWarning('free');setPlayMode('free')}" class="navButton" :class="selectedHighlight('free')">
         <fa class="navButton__icon" :icon="['fas','music']" />
-        <strong class="navButton__text">Free</strong> 
+        <strong class="navButton__text">
+          {{st.strings.free[getLang]}}
+        </strong> 
       </li>
     </ul>
     <transition name="resetFade">
@@ -28,7 +34,7 @@ export default {
     return{} 
   },
   computed:{
-     ...mapGetters(["getCurrentGuess","getSecretNotes",'getLastNote','getPlayMode','getScales','getPiano','getRoundPoints','getTotalPoints','getResetWarning']),
+     ...mapGetters(["getCurrentGuess","getSecretNotes",'getLastNote','getPlayMode','getScales','getPiano','getRoundPoints','getTotalPoints','getResetWarning','getLang']),
   },
   methods:{
     setPlayMode: function(mode){

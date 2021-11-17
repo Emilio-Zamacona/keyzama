@@ -1,10 +1,10 @@
 <template>
   <div class="resetModal">
     <div class="buttonBoxNotification">
-      <h2>Changing modes will reset the progress of your current game. Change modes anyway?</h2>
+      <h2>{{st.strings.resetWarning[getLang]}}</h2>
       <div>
-        <button @click="()=>{resetGame(); resetWarningOff()}">Change</button>
-        <button @click="resetWarningOff()">Cancel</button>
+        <button @click="()=>{resetGame(); resetWarningOff()}">{{st.strings.change[getLang]}}</button>
+        <button @click="resetWarningOff()">{{st.strings.cancel[getLang]}}</button>
       </div>
     </div>
   </div>
@@ -31,7 +31,7 @@ export default {
     }
   },
   computed:{
-     ...mapGetters(['getResetWarning']),
+     ...mapGetters(['getResetWarning','getLang']),
   },
 }
 </script>

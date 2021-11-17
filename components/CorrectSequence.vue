@@ -3,10 +3,10 @@
   <transition name="correctAppear">
     <div class="correct" v-if="roundWin&& !gameWin">
       <div class="buttonBoxNotification">
-        <h1>Round Completed!</h1>
-        <h2>Round Points: {{getRoundPoints}} </h2>
-        <h2>Total Points: {{getTotalPoints}} </h2>
-        <button @click="()=>{winCheck()}" class="correct__box__button">Continue</button>
+        <h1>{{st.strings.roundCompleted[getLang]}}</h1>
+        <h2>{{st.strings.roundPoints[getLang] + getRoundPoints}}</h2>
+        <h2>{{st.strings.totalPoints[getLang] + getTotalPoints}} </h2>
+        <button @click="()=>{winCheck()}" class="correct__box__button">{{st.strings.continue[getLang]}}</button>
       </div>
     </div>
   </transition>
@@ -45,7 +45,8 @@ export default {
     'roundWin',
     'gameWin',
     'getChosenDifficulty',
-    'getChosenScale']),
+    'getChosenScale',
+    'getLang']),
   }
 }
 </script>

@@ -44,7 +44,11 @@ Array.prototype.equals = function (array) {
 Object.defineProperty(Array.prototype, "equals", {enumerable: false});
 
 Vue.mixin({
-
+  computed:{
+    st(){
+      return this.$store.state
+    }
+  },
   methods: {
     newSequence(noteAmount,scale){
       const tonic = Math.floor(Math.random() * 12);

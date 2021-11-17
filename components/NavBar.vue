@@ -7,15 +7,21 @@
     </div>
     <transition name="modeAppearReverse">
       <ul v-if="getPlayMode!=''" class="navBar__options">
-        <li >
-          <fa class="navButton" :icon="['fas','info-circle']" />
+        <li>
+          <button @click="$store.commit('changeState',{stateValue:'language',newValue: 'eng'})">EN</button>
         </li>
-        <!--    
         <li>
-          <fa class="navButton" :icon="['fas','clipboard-list']" />
-        </li> -->
+          <button @click="$store.commit('changeState',{stateValue:'language',newValue: 'esp'})">ES</button>
+        </li>
+        <li >
+          <fa @click="$store.commit('changeState',{stateValue:'explicitNotes',newValue: !getExplicitNotes}) " 
+              class="navButton" 
+              :icon="getExplicitNotes==true ? ['fas','eye']:['fas','eye-slash']" />
+        </li>
         <li>
-          <fa @click="$store.commit('changeState',{stateValue:'settingsOpen',newValue: !getSettingsOpen}) " class="navButton" :icon="['fas','cog']" />
+          <fa @click="$store.commit('changeState',{stateValue:'settingsOpen',newValue: !getSettingsOpen}) " 
+              class="navButton" 
+              :icon="['fas','cog']" />
         </li>
       </ul>
     </transition>
@@ -35,7 +41,7 @@ export default {
     } 
   },
   computed:{
-     ...mapGetters(["getCurrentGuess","getSecretNotes",'getLastNote','getPlayMode','getScales','getPiano','getRoundPoints','getSettingsOpen']),
+     ...mapGetters(["getCurrentGuess","getSecretNotes",'getLastNote','getPlayMode','getScales','getPiano','getRoundPoints','getSettingsOpen','getExplicitNotes']),
   },
   methods:{}
 }

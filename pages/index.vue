@@ -3,7 +3,7 @@
     <NavBar/>
     <transition name="modeSlide" mode="out-in">
       <div v-if="getPlayMode==''" class="modeSelect">
-        <h1 class="modeSelect__title">Choose a mode:</h1> 
+        <h1 class="modeSelect__title">{{st.strings.choose[getLang]}}</h1> 
         <ModeSelect class="modeSelect__options"/>
       </div>
     </transition>
@@ -32,7 +32,7 @@ export default {
   },
   methods:{},
   computed:{
-    ...mapGetters(["getCurrentGuess","getSecretNotes","getTotalPoints","getRoundPoints","getPlayMode",'getRound']),
+    ...mapGetters(["getCurrentGuess","getSecretNotes","getTotalPoints","getRoundPoints","getPlayMode",'getRound','getLang']),
   }
 }
 </script>
