@@ -8,11 +8,14 @@
       isNotePlaying(pianoKey.name)]"
       @mousedown="($event)=>{playSound(pianoKey.name); isNoteCorrect(pianoKey.name, $event);isCorrect()}"
       >
-        <strong
-        class="main__keyboard__key__text"
-        v-if="getExplicitNotes==true" 
-        :class="pianoKey.color=='white' ? '--white__text':'--black__text'"
-        >{{st.strings.notes[noteToText(pianoKey.name)][getLang]}}</strong>
+        <transition name="keyNamesAppear">
+          <strong
+            class="main__keyboard__key__text"
+            v-if="getExplicitNotes==true" 
+            :class="pianoKey.color=='white' ? '--white__text':'--black__text'"
+            >{{st.strings.notes[noteToText(pianoKey.name)][getLang]}}
+          </strong>
+        </transition>
       </div>
     </div>
     
@@ -95,6 +98,8 @@ export default {
       if(this.getPlayMode!='free' && this.getSecretNotes.length!=0 && this.getLastNote==''){
         const note = this.getSecretNotes[this.getCurrentGuess.length-1];
         const answer = note==key ? "--correct" : "--wrong";
+        console.log(note);
+        console.log(key);
         event.target.classList.add(answer);
         setTimeout(function(){
           event.target.classList.remove(answer);
@@ -226,6 +231,7 @@ export default {
       &__text{
         font-size: .75rem;
         margin-inline: 0;
+        pointer-events: none;
         @include respond(mobile){
           font-size: .4rem;
         }
@@ -234,6 +240,25 @@ export default {
   }
 }
 
+.keyNamesAppear-enter-active{
+  animation: keyNamesAppear .25s ease
+}
+.keyNamesAppear-leave-active{
+  animation: keyNamesAppear .25s reverse ease
+}
 
+@keyframes keyNamesAppear{
+  0%{
+    opacity: 0;
+    transform: scale(0.4);
+    }
+  80%{
+    transform: scale(1.15);
+  }
+  100%{
+    opacity:1;
+    transform: scale(1);
 
+    }
+}
 </style>

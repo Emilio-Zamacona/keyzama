@@ -61,8 +61,9 @@ Vue.mixin({
       for (let i = 0; i < noteAmount; i++) {
         const key = this.getPiano[Math.floor(Math.random()*this.getPiano.length)].name
         const note = key.replace(/[0-9]/g, '');
+
         if (notes.includes(note)){
-          finalNotes.push(key)
+          finalNotes.push(key.replace(/S/g, '#'))
         } else{
           i -=1
         }
@@ -79,8 +80,8 @@ Vue.mixin({
         for (let index = 0; index < sequence.length; index++) {
           setTimeout(function() {
             if((st.state.playMode!='free') && (st.state.resetWarning.open==false)){
-              sampler.triggerAttackRelease(sequence[index],0.8);
-              st.commit('changeState',{stateValue : 'lastNote' , newValue : sequence[index]})
+              sampler.triggerAttackRelease(sequence[index].replace(/S/g, "#"),0.8);
+              st.commit('changeState',{stateValue : 'lastNote' , newValue : sequence[index].replace(/S/g, "#")})
             } else{
               st.commit('changeState',{stateValue : 'lastNote' , newValue : ''});
               st.commit('changeState',{stateValue : 'secretNotes' , newValue : []});
