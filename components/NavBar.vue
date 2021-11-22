@@ -1,5 +1,5 @@
 <template>
-  <section class="navBar">
+  <section class="navBar" :style="navBarHeight">
     <div class="navBar__left">
       <transition name="modeAppear">
         <ModeSelect v-if="getPlayMode!=''"/>
@@ -7,26 +7,17 @@
     </div>
     <transition name="modeAppearReverse">
       <ul v-if="getPlayMode!=''" class="navBar__options">
-        <li>
-          <button @click="$store.commit('changeState',{stateValue:'language',newValue: 'eng'})">EN</button>
-        </li>
-        <li>
-          <button @click="$store.commit('changeState',{stateValue:'language',newValue: 'esp'})">ES</button>
-        </li>
         <li >
           <fa @click="$store.commit('changeState',{stateValue:'explicitNotes',newValue: !getExplicitNotes}) " 
-              class="navButton" 
+              class="navBar__options__button" 
               :icon="getExplicitNotes==true ? ['fas','eye']:['fas','eye-slash']" />
         </li>
         <li>
           <fa @click="$store.commit('changeState',{stateValue:'settingsOpen',newValue: !getSettingsOpen}) " 
-              class="navButton" 
-              :icon="['fas','cog']" />
+              class="navBar__options__button" 
+              :icon="['fas','bars']" />
         </li>
       </ul>
-    </transition>
-    <transition name="settingsAppear">
-      <Settings class="settings" v-if="getSettingsOpen" />
     </transition>
   </section>
 </template>
@@ -37,13 +28,16 @@ import { mapGetters } from "vuex";
 export default {
   data:function () {
     return{
-      settingsOpen: false,
     } 
   },
   computed:{
      ...mapGetters(["getCurrentGuess","getSecretNotes",'getLastNote','getPlayMode','getScales','getPiano','getRoundPoints','getSettingsOpen','getExplicitNotes']),
   },
-  methods:{}
+  methods:{
+    navBarHeight(){
+      return getPlaymode!='' ? 'height:$color5':'height:$color2'
+    }
+  }
 }
 </script>
 
@@ -53,8 +47,9 @@ export default {
   display: flex;
   justify-content: space-between;
   margin: 0;
-  height: 3rem;
   width: 100%;
+  background: $color2;
+  transition: 1s;
   &__left{
     display: flex;
   }
@@ -63,14 +58,29 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    &__button{
+      display: flex;
+      color: $color5;
+      font-size: 2rem;
+      font-weight: lighter !important;
+      user-select: none;
+      transition: 0.2s;
+      padding-inline: 1rem;
+      &:hover{
+        cursor: pointer;
+        color: $color1;
+      }
+      &:active{
+        transform: scale(1.1);
+      }
+      strong,h1,h2,h3,h4{
+        padding-inline: 1rem;
+      }
+    }
   }
+
 }
-.settings{
-  z-index: 5;
-  position: absolute;
-  top: 4rem;
-  right: 0;
-}
+
 
 .modeAppear-enter-active{
   animation: modeAppear 1.5s ease;
@@ -93,17 +103,4 @@ export default {
   0%{transform: translateX(20rem);}
   100%{transform: translateX(0px);}
 }
-
-.settingsAppear-enter-active{
-  animation: settingsAppear .8s ease;
-}
-.settingsAppear-leave-active{
-  animation: settingsAppear .8s reverse ease;
-}
-@keyframes settingsAppear{
-  0%{transform: translateX(250%);}
-  60%{transform: translateX(-15%);}
-  100%{transform: translateX(0%);}
-}
-
 </style>

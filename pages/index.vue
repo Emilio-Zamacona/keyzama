@@ -1,6 +1,7 @@
 <template>
   <section class="body">
     <NavBar/>
+    <Settings/>
     <transition name="modeSlide" mode="out-in">
       <div v-if="getPlayMode==''" class="modeSelect">
         <h1 class="modeSelect__title">{{st.strings.choose[getLang]}}</h1> 
@@ -19,6 +20,7 @@
     </transition>
     <CorrectSequence/>
     <Win/>
+    
     
   </section>
 </template>
@@ -49,7 +51,7 @@ export default {
     top: 10rem;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: $color5;
+    color: $color2;
     @include respond(tablet){
       font-size: 1.5rem;
     }
@@ -65,7 +67,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: $color4;
+    background: $color5;
     width: 100%;
 
 

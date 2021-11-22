@@ -11,10 +11,11 @@ export const state = () => ({
   resetWarning:{open:false, mode:''},
   settingsOpen: false,
   explicitNotes:true,
+  timeBetweenNotes:1000,
   difficulties:{
-    easy:{notesPerRound:3, timeBetweenNotes:1600},
-    normal:{notesPerRound:5, timeBetweenNotes:1300},
-    hard:{notesPerRound:7, timeBetweenNotes:1000},
+    easy:{notesPerRound:3},
+    normal:{notesPerRound:5},
+    hard:{notesPerRound:7},
   },
   chosenDifficulty:'easy',
   chosenScale:'major',
@@ -87,6 +88,7 @@ export const state = () => ({
     victory:{eng:'You Won!',esp:'Ganaste!'},
     yourScore:{eng:'your score: ',esp:'tu puntaje: '},
     goBack:{eng:'Go Back',esp:'Volver'},
+    difficulty:{eng:'Difficulty',esp:'Dificultad'},
     easy:{eng:'Easy',esp:'Fácil'},
     normal:{eng:'Normal',esp:'Normal'},
     hard:{eng:'Hard',esp:'Difícil'},
@@ -94,6 +96,10 @@ export const state = () => ({
                   esp:'Cambiar de modo borrará el progreso de tu actual juego, cambiar de todos modos?'},
     change:{eng:'Change',esp:'Cambiar'},
     cancel:{eng:'Cancel',esp:'Cancelar'},
+    language:{eng:'Language',esp:'Idioma'},
+    timeBetweenNotes:{eng:'Time between Notes',esp:'Tiempo entre Notas'},
+    fast:{eng:'Fast',esp:'Rápido'},
+    slow:{eng:'Slow',esp:'Lento'},
   } 
 })
 
@@ -138,6 +144,9 @@ export const getters = {
   },
   getPiano:(state)=>{
     return state.piano
+  },
+  getTimeBetweenNotes:(state)=>{
+    return state.timeBetweenNotes
   },
   getResetWarning:(state)=>{
     return state.resetWarning

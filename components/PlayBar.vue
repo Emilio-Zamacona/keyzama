@@ -38,7 +38,19 @@ export default {
   methods:{},
   components:{},
   computed:{
-   ...mapGetters(["getCurrentGuess","getSecretNotes",'getLastNote','getPlayMode','getScales','getPiano','getRoundPoints','getTotalPoints','getResetWarning','getChosenScale','getChosenDifficulty']),
+  ...mapGetters(["getCurrentGuess",
+    "getSecretNotes",
+    'getLastNote',
+    'getPlayMode',
+    'getScales',
+    'getPiano',
+    'getRoundPoints',
+    'getTotalPoints',
+    'getResetWarning',
+    'getChosenScale',
+    'getChosenDifficulty',
+    'getTimeBetweenNotes'
+   ]),
   },
 }
 </script>
@@ -54,8 +66,7 @@ export default {
 }
 
 .playBar{
-
-
+  user-select: none;
   &__button{
     background: $color2;
     border-radius: 50%;

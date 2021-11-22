@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import * as Tone from 'tone';
+
     const sampler = new Tone.Sampler({
       urls: {
         "C4": "C4.mp3",
@@ -86,11 +87,11 @@ Vue.mixin({
               st.commit('changeState',{stateValue : 'lastNote' , newValue : ''});
               st.commit('changeState',{stateValue : 'secretNotes' , newValue : []});
               }
-          },1300*index)
+          },st.state.timeBetweenNotes*index)
         };
         setTimeout(function(){
           st.commit('changeState',{stateValue : 'lastNote' , newValue : ''})
-        }, (sequence.length+1)*1300)
+        }, (sequence.length+1)*st.state.timeBetweenNotes)
       }
     },
     isCorrect(){

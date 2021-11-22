@@ -211,7 +211,7 @@ export default {
     max-width: 800px;
 
     box-shadow:
-      0 0 .5rem .25rem $color2;
+      0 0 .125rem .25rem $color2;
     &__key{
       border-block: solid 1px black;
       border-left: solid 1px black;

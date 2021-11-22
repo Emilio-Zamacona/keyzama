@@ -1,19 +1,19 @@
 <template>
   <section class="mode">
     <ul class="mode__list">
-      <li @click="()=>{resetWarning('memory');setPlayMode('memory')}" class="navButton" :class="selectedHighlight('memory')">
+      <li @click="()=>{resetWarning('memory');setPlayMode('memory')}" class="navButton" :class="[selectedHighlight('memory'),navColor()]">
         <fa class="navButton__icon" :icon="['fas','brain']" />
         <strong class="navButton__text">
           {{st.strings.memory[getLang]}}
         </strong>
       </li>
-      <li @click="()=>{resetWarning('guess');setPlayMode('guess')}" class="navButton" :class="selectedHighlight('guess')">
+      <li @click="()=>{resetWarning('guess');setPlayMode('guess')}" class="navButton" :class="[selectedHighlight('guess'),navColor()]">
         <fa class="navButton__icon" :icon="['fas','headphones']" />
         <strong class="navButton__text">
           {{st.strings.guess[getLang]}}
         </strong> 
       </li>
-      <li @click="()=>{resetWarning('free');setPlayMode('free')}" class="navButton" :class="selectedHighlight('free')">
+      <li @click="()=>{resetWarning('free');setPlayMode('free')}" class="navButton" :class="[selectedHighlight('free'), navColor()]">
         <fa class="navButton__icon" :icon="['fas','music']" />
         <strong class="navButton__text">
           {{st.strings.free[getLang]}}
@@ -34,9 +34,12 @@ export default {
     return{} 
   },
   computed:{
-     ...mapGetters(["getCurrentGuess","getSecretNotes",'getLastNote','getPlayMode','getScales','getPiano','getRoundPoints','getTotalPoints','getResetWarning','getLang']),
+     ...mapGetters(["getCurrentGuess","getSecretNotes",'getLastNote','getPlayMode','getScales','getPiano','getRoundPoints','getSelectedMode','getTotalPoints','getResetWarning','getLang']),
   },
   methods:{
+    navColor(){
+      return (this.$store.state.playMode!='' ? '--modeSelected':'')
+    },
     setPlayMode: function(mode){
       if(this.getResetWarning.open==false){
         this.$store.commit('changeState',{stateValue : 'playMode' , newValue : mode})
@@ -63,9 +66,14 @@ export default {
 <style lang="scss" scoped>
 
 @import '@/assets/css/mixins.scss';
+.--modeSelected{
+  color: $color5 !important;
+  &:hover{
+    color: $color1 !important;
+  }
+}
 .--selected{
-  color: $color1;
-
+  color: $color1 !important;
 }
 
 .mode{
@@ -73,7 +81,7 @@ export default {
     justify-content: center;
     align-items: center;
   &__title{
-    color: $color4;
+    color: $color2;
     text-align: center;
   }
   &__list{

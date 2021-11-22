@@ -55,8 +55,9 @@ export default {
   min-width: 30vw;
   max-width: 28rem;
   border-radius: .5rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
   padding: 1rem;
+  user-select: none;
   @include respond(tablet){
     font-size: 1.25rem;
     padding: .25rem;
