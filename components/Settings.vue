@@ -1,7 +1,7 @@
 <template>
   <div>
     <transition name="settingsAppear">
-      <section v-if="getSettingsOpen" class="settings" :style="'top:'+navBarHeight">
+      <section v-if="getSettingsOpen" class="settings" :style="['top:'+navBarHeight,'margin-bottom:'+navBarHeight]">
         <div class="settings__container">
           <p class="settings__container__label">{{st.strings.difficulty[getLang]}} </p>
           <ul>
@@ -30,12 +30,8 @@
             :min="500"
             :max="1500"
             :height="'1rem'"
-            :width="'40%'"
+            :width="'50%'"
           /></vue-slider>
-          <div class="--sliderLabels">
-            <strong>{{st.strings.fast[getLang]}} </strong>
-            <strong>{{st.strings.slow[getLang]}} </strong>
-          </div>
         </div>
         <button @click="$store.commit('changeState',{stateValue:'settingsOpen',newValue:false})" class="settings__ok">Ok</button>
       </section> 
@@ -87,14 +83,7 @@ export default {
   color: $color6 !important;
   font-weight: 900;
 }
-.--sliderLabels{
-  display: flex;
-  justify-content: space-between;
-  width: 40%;
-  color: $color3;
-  text-shadow: 0px 0px 3px black;
 
-}
 .settings{
   display: flex;
   flex-direction: column;
@@ -104,31 +93,37 @@ export default {
   z-index: 4;
   width: 100%;
   height: 100%;
-  border: 0.5rem solid $color1;
-/*   border-left: 0; */
+  border-top: .125rem solid $color1;
+  font-size: 1.5rem;
+  @include respond(tablet){
+    font-size: 1rem;
+  }
   &__container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-block: 2%;
+    margin: 2rem;
+    display: grid;
+    grid-template-columns:1fr 2fr ;
+    grid-template-rows:1fr ;
+    justify-items: start;
+    align-items: start;
+
+    @include respond(smallest){
+      margin: 1rem;
+    }
     ul{
       list-style-type: none;
       display: flex;
       justify-content: center;
     }
     &__label{
-      text-align: center;
+      display: table-cell;
+      vertical-align: middle;
       color: $color3;
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
       text-shadow: 0px 0px 3px black;
     }
     &__option{
       cursor: pointer;
       user-select: none;
       color: $color1 ;
-      font-size: 1.5rem;
       margin: 0rem 1rem;
       transition: .1s;
       &:hover{
@@ -142,24 +137,22 @@ export default {
   }
   &__ok{
     align-self: center;
-    background: $color2;
+    background: linear-gradient(180deg,$color2, darken($color2,10%));
+    text-align: center;
     border-style: none;
-    border: .25rem solid $color1;
-    border-radius: .5rem;
+    border-radius: 5px;
     color: $color5;
-    font-size: 1.5rem;
-    padding: .5rem;
     transition: .2s;
-    @include respond(tablet){
-      font-size: 1rem;
-    }
+    width: 6rem;
+    height: 3rem;
     &:hover{
       transform:scale(1.05);
     }
     &:active{
       transform: translateY(.125rem) scale(0.95);
-      background: $color1;
-      border: $color2 solid .25rem;
+      background: linear-gradient(180deg,$color1, darken($color1,10%));
+      color: $color5;
+
     }
   }
 }

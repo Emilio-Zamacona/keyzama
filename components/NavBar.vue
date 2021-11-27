@@ -44,7 +44,7 @@ export default {
   justify-content: space-between;
   margin: 0;
   width: 100%;
-  background: $color2;
+  background: $color3;
   transition: 1s;
   &__left{
     display: flex;

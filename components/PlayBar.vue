@@ -69,7 +69,7 @@ export default {
   user-select: none;
   display: flex;
   &__button{
-    background: $color2;
+    background: $color3;
     border-radius: 50%;
     border: 2px solid $color1;
     font-size: 2em;

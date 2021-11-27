@@ -168,8 +168,9 @@ export default {
   width: 8%;
   z-index:1;
   @include landscape{
-    height: 50vh;
+    height: 40vh;
   }
+
   display: flex;
   justify-content: center;
   align-items:flex-end;
@@ -188,7 +189,7 @@ export default {
   margin:0 -2% 0 -2%;
   box-shadow: 2px 2px 3px 2px rgba(0, 0, 0, 0.356);
   @include landscape{
-    height: 35vh;
+    height: 25vh;
   }
   display: flex;
   justify-content: center;
@@ -213,6 +214,7 @@ export default {
   }
   @include respond(smallest){
     grid-template-rows: .75fr 2fr 1fr;
+  
   }
 
   &__bar{
@@ -227,9 +229,10 @@ export default {
     align-content: center;
     width: 100%;
     max-width: 800px;
-
-    box-shadow:
-      0 0 .125rem .25rem $color2;
+    box-shadow: 0 0 0 .25rem $color3;
+    @include respond(smallest){
+        margin-block: .25rem;
+    }
     &__key{
       border-block: solid 1px black;
       border-left: solid 1px black;

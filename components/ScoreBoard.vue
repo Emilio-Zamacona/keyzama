@@ -65,7 +65,7 @@ export default {
   display: grid;
   grid-template-areas: 'a b c';
   grid-template-columns: 15% auto 15%;
-  background: $color2;
+  background: $color3;
   color: $color5;
   min-height: 3rem;
   min-width: 28rem;
@@ -74,8 +74,11 @@ export default {
   padding: 1rem;
   user-select: none;
   @include respond(tablet){
-    font-size: 1.25rem;
+    font-size: 1rem;
     padding: .25rem;
+    min-width: 14rem;
+    grid-template-columns: 25% auto 25%;
+    min-height: 2rem;
   }
   &__text{
     text-align: center;

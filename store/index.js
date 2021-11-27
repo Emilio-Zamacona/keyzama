@@ -107,6 +107,7 @@ export const mutations = {
   changeState(state,{stateValue,newValue}) {
     state[stateValue] = newValue
   },
+
 }
 export const getters = {
   getSecretNotes: (state) => {
