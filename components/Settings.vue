@@ -5,18 +5,18 @@
         <div class="settings__container">
           <p class="settings__container__label">{{st.strings.difficulty[getLang]}} </p>
           <ul>
-            <li class="settings__container__option" @click="setDifficulty('easy')">{{st.strings.easy[getLang]}}</li>
-            <li class="settings__container__option" @click="setDifficulty('normal')">{{st.strings.normal[getLang]}}</li>
-            <li class="settings__container__option" @click="setDifficulty('hard')">{{st.strings.hard[getLang]}}</li>
+            <li class="settings__container__option" :class="isOptionSelected(getChosenDifficulty,'easy')" @click="setDifficulty('easy')">{{st.strings.easy[getLang]}}</li>
+            <li class="settings__container__option" :class="isOptionSelected(getChosenDifficulty,'normal')" @click="setDifficulty('normal')">{{st.strings.normal[getLang]}}</li>
+            <li class="settings__container__option" :class="isOptionSelected(getChosenDifficulty,'hard')" @click="setDifficulty('hard')">{{st.strings.hard[getLang]}}</li>
           </ul>
         </div>
         <div class="settings__container">
           <p class="settings__container__label">{{st.strings.language[getLang]}} </p>
           <ul>
-            <li class="settings__container__option" @click="$store.commit('changeState',{stateValue:'language',newValue: 'esp'})">
+            <li class="settings__container__option" :class="isOptionSelected(getLang,'esp')" @click="$store.commit('changeState',{stateValue:'language',newValue: 'esp'})">
               Español
             </li>
-            <li class="settings__container__option" @click="$store.commit('changeState',{stateValue:'language',newValue: 'eng'})">
+            <li class="settings__container__option" :class="isOptionSelected(getLang,'eng')" @click="$store.commit('changeState',{stateValue:'language',newValue: 'eng'})">
               English
             </li>
           </ul>
@@ -65,10 +65,13 @@ export default {
       let box = document.querySelector('.box');
       let height = box.clientHeight;
       return height
+    },
+    isOptionSelected(stateItem, option){
+      return stateItem==option ? "--selected":""
     }
   },
   computed:{
-    ...mapGetters(["getCurrentGuess","getSecretNotes","getTotalPoints","getRoundPoints","getPlayMode",'getRound','getLang','getSettingsOpen']),
+    ...mapGetters(["getCurrentGuess","getSecretNotes","getTotalPoints","getRoundPoints","getPlayMode",'getRound','getLang','getSettingsOpen','getChosenDifficulty']),
   },
   watch:{
     timeBetweenNotes:function(newTime){
@@ -80,11 +83,16 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/assets/css/mixins.scss';
+.--selected{
+  color: $color6 !important;
+  font-weight: 900;
+}
 .--sliderLabels{
   display: flex;
   justify-content: space-between;
   width: 40%;
-  color: $color2;
+  color: $color3;
+  text-shadow: 0px 0px 3px black;
 
 }
 .settings{
@@ -114,6 +122,7 @@ export default {
       color: $color3;
       font-size: 1.5rem;
       margin-bottom: 1rem;
+      text-shadow: 0px 0px 3px black;
     }
     &__option{
       cursor: pointer;
@@ -123,7 +132,7 @@ export default {
       margin: 0rem 1rem;
       transition: .1s;
       &:hover{
-        color: $color2;
+        color: $color6;
         transform: scale(1.08);
       }
       &:active{

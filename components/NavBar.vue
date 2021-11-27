@@ -7,11 +7,7 @@
     </div>
     <transition name="modeAppearReverse">
       <ul v-if="getPlayMode!=''" class="navBar__options">
-        <li >
-          <fa @click="$store.commit('changeState',{stateValue:'explicitNotes',newValue: !getExplicitNotes}) " 
-              class="navBar__options__button" 
-              :icon="getExplicitNotes==true ? ['fas','eye']:['fas','eye-slash']" />
-        </li>
+
         <li>
           <fa @click="$store.commit('changeState',{stateValue:'settingsOpen',newValue: !getSettingsOpen}) " 
               class="navBar__options__button" 

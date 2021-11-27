@@ -5,7 +5,7 @@
       <div v-for="pianoKey in piano" :key="pianoKey.id" class="main__keyboard__key" 
       :ref="pianoKey.name"
       :class="[pianoKey.color=='white' ? '--white':'--black',
-      isNotePlaying(pianoKey.name)]"
+      isNotePlaying(pianoKey.name),isBlocked(pianoKey.name)]"
       @mousedown="($event)=>{playSound(pianoKey.name); isNoteCorrect(pianoKey.name, $event);isCorrect()}"
       >
         <transition name="keyNamesAppear">
@@ -79,6 +79,20 @@ export default {
         text = text+'S';
       } return text
     },
+    isBlocked(key){
+      if (this.getPlayMode=='memory'){
+        if (this.$store.state.lastNote != ''){
+          if(this.$store.state.lastNote != key){
+            return "--blocked"
+          }
+        } 
+      }
+      if (this.getPlayMode=='guess'){
+        if(this.$store.state.lastNote!=''){
+          return "--blocked"
+        }
+      }
+    },
     isNotePlaying(key){
       if (this.getPlayMode!='guess'){
         if (this.$store.state.lastNote == key) return "--playing"
@@ -121,6 +135,10 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/assets/css/mixins.scss';
+.--blocked{
+  z-index: 2;
+  filter:  brightness(0.65)
+}
 .--correct{
     z-index: 1.5;
   background: linear-gradient(290deg, rgb(145, 255, 160) 25%, rgb(85, 251, 85) 75%) !important;

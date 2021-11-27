@@ -1,26 +1,24 @@
 <template>
-  <section>
+  <section class="playBar" >
+    <div @click="$store.commit('changeState',{stateValue:'explicitNotes',newValue: !getExplicitNotes}) " >
+      <fa 
+          class="playBar__button" 
+          :icon="getExplicitNotes==true ? ['fas','eye']:['fas','eye-slash']" />
+    </div>
     <transition name="playBarAppear" mode="out-in">
-      <div class="playBar" v-if="getPlayMode!='free'">
-        <div v-if="getSecretNotes.length==0">
-          <!-- TRATAR DE CONSTRUIR UN MÉTODO PARA QUE LOS TOOLTIP SE PONGAN ARRIBA DEL ELEMENTO HOVER CORRESPONDIENTE -->
-          <!-- <Tooltip class="--tooltip" v-if="tooltips.start" :text="'Press to start'" />  -->
-          <fa :icon="['fas','play-circle']" 
-            class="playBar__button" @click="()=>{newSequence(this.$store.state.difficulties[this.getChosenDifficulty].notesPerRound,this.getChosenScale);playSequence()}"
-            @mouseover="tooltips.start= true"
-            @mouseout="tooltips.start=false"/>
-          
-        </div>
-        <div v-else>
-          <fa :icon="['fas','play-circle']" 
-            class="playBar__button" @click="playSequence()"
-            />
-          <fa :icon="['fas','sync-alt']" 
-            class="playBar__button" @click="()=>{newSequence(this.$store.state.difficulties[this.getChosenDifficulty].notesPerRound,this.getChosenScale);playSequence()}"
-            />
-        </div>
+      <div v-if="getSecretNotes.length!=0">
+        <fa :icon="['fas','play-circle']" class="playBar__button" @click="playSequence()"/>
       </div>
     </transition>
+    <transition name="playBarAppear" mode="out-in">
+      <div v-if="getSecretNotes.length!=0">
+        <fa :icon="['fas','sync-alt']" 
+          class="playBar__button" @click="()=>{newSequence(this.$store.state.difficulties[this.getChosenDifficulty].notesPerRound,this.getChosenScale);playSequence()}"/>
+      </div>
+    </transition>
+      
+
+
   </section>
 </template>
 
@@ -49,7 +47,9 @@ export default {
     'getResetWarning',
     'getChosenScale',
     'getChosenDifficulty',
-    'getTimeBetweenNotes'
+    'getTimeBetweenNotes',
+    'getExplicitNotes',
+    'getRound'
    ]),
   },
 }
@@ -67,6 +67,7 @@ export default {
 
 .playBar{
   user-select: none;
+  display: flex;
   &__button{
     background: $color2;
     border-radius: 50%;
@@ -75,12 +76,11 @@ export default {
     color: $color5;
     transition: 0.1s;
     padding: .75rem;
+    margin:0px;
     @include respond(tablet){
       font-size: 1.5em;
       padding: .5rem;
       @include landscape{
-
-
       }
     }
     &:hover{
