@@ -1,10 +1,5 @@
 <template>
   <section class="playBar" >
-    <div @click="$store.commit('changeState',{stateValue:'explicitNotes',newValue: !getExplicitNotes}) " >
-      <fa 
-          class="playBar__button" 
-          :icon="getExplicitNotes==true ? ['fas','eye']:['fas','eye-slash']" />
-    </div>
     <transition name="playBarAppear" mode="out-in">
       <div v-if="getSecretNotes.length!=0">
         <fa :icon="['fas','play-circle']" class="playBar__button" @click="playSequence()"/>
@@ -16,9 +11,11 @@
           class="playBar__button" @click="()=>{newSequence(this.$store.state.difficulties[this.getChosenDifficulty].notesPerRound,this.getChosenScale);playSequence()}"/>
       </div>
     </transition>
-      
-
-
+    <div @click="$store.commit('changeState',{stateValue:'explicitNotes',newValue: !getExplicitNotes}) " >
+      <fa 
+          class="playBar__button" 
+          :icon="getExplicitNotes==true ? ['fas','eye']:['fas','eye-slash']" />
+    </div>      
   </section>
 </template>
 
@@ -68,6 +65,7 @@ export default {
 .playBar{
   user-select: none;
   display: flex;
+  place-items: center;
   &__button{
     background: $color3;
     border-radius: 50%;

@@ -4,7 +4,7 @@
       <div v-if="getPlayMode!='free'" class="scoreBoard">
         <transition name='shrink' mode="out-in">
           <strong key="1" v-if="getSecretNotes==0" class="scoreBoard__text --grid2">{{st.strings.pressPlay[getLang]}} </strong>
-          <strong key="2" v-else class="scoreBoard__text --grid2">{{'&#x2714;'.repeat(getCurrentGuess.length)+('&#183;'.repeat(getSecretNotes.length - getCurrentGuess.length))}}</strong>
+          <strong key="2" v-else class="scoreBoard__text --grid2">{{'&#x2714; '.repeat(getCurrentGuess.length)+('&#183; '.repeat(getSecretNotes.length - getCurrentGuess.length))}}</strong>
         </transition>
         <transition name='shrink'>
           <div v-if="getSecretNotes.length==0" class="--grid3">
@@ -64,20 +64,22 @@ export default {
 .scoreBoard{
   display: grid;
   grid-template-areas: 'a b c';
-  grid-template-columns: 15% auto 15%;
+  grid-template-columns: 10% auto 10%;
   background: $color3;
   color: $color5;
-  min-height: 3rem;
+  min-height: 2.5rem;
   min-width: 28rem;
   border-radius: .5rem;
   font-size: 1.5rem;
   padding: 1rem;
   user-select: none;
   @include respond(tablet){
-    font-size: 1rem;
+    font-size: .75rem;
     padding: .25rem;
-    min-width: 14rem;
+    width:10rem ;
+    min-width: 50%;
     grid-template-columns: 25% auto 25%;
+    height: 2rem;
     min-height: 2rem;
   }
   &__text{
@@ -99,6 +101,9 @@ export default {
       background: $color5;
 
     }
+    @include respond(tablet){
+      font-size: 1.5rem;
+    }
   }
 }
 .scoreAppear-enter-active{
@@ -108,7 +113,7 @@ export default {
   animation: scoreAppear .7s reverse ease;
 }
 @keyframes scoreAppear{
-  0%{transform: scale(1.4) translateX(1000px);}
+  0%{transform: scale(1.4) translateX(-1000px);}
   100%{transform: scale(1) translateX(0px);}
 }
 .shrink-enter-active{

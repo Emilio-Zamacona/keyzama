@@ -1,6 +1,10 @@
 <template>
   <div class="main">
-    <PlayBar/>
+    <div class="main__bar">
+      <ScoreBoard/>
+      <PlayBar/>
+    </div>
+
     <div class="main__keyboard">
       <div v-for="pianoKey in piano" :key="pianoKey.id" class="main__keyboard__key" 
       :ref="pianoKey.name"
@@ -17,10 +21,6 @@
           </strong>
         </transition>
       </div>
-    </div>
-    
-    <div class="main__bar">
-      <ScoreBoard/>
     </div>
   </div>
 </template>
@@ -168,7 +168,7 @@ export default {
   width: 8%;
   z-index:1;
   @include landscape{
-    height: 40vh;
+    height: 50vh;
   }
 
   display: flex;
@@ -189,7 +189,7 @@ export default {
   margin:0 -2% 0 -2%;
   box-shadow: 2px 2px 3px 2px rgba(0, 0, 0, 0.356);
   @include landscape{
-    height: 25vh;
+    height: 35h;
   }
   display: flex;
   justify-content: center;
@@ -201,11 +201,11 @@ export default {
   }
 }
 .main{
+
   height: 100%;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: .75fr 2fr 1fr;
   justify-items: center;
   align-items: center;
   align-content: center;
@@ -219,9 +219,14 @@ export default {
 
   &__bar{
     width: 100%;
+    max-width: 800px;
     display: flex;
-    justify-content: space-around;
-    min-height: 3rem;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 7rem;
+    @include respond(tablet){
+      min-height: 4rem;
+    }
   }
   &__keyboard {
     display: flex;
@@ -230,6 +235,8 @@ export default {
     width: 100%;
     max-width: 800px;
     box-shadow: 0 0 0 .25rem $color3;
+/*     border: solid .25rem $color3;
+    border-radius: 5px; */
     @include respond(smallest){
         margin-block: .25rem;
     }

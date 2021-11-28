@@ -51,7 +51,7 @@ export default {
     top: 10rem;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: $color2;
+    color: $color3;
     @include respond(tablet){
       font-size: 1.5rem;
     }

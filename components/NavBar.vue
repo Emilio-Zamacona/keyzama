@@ -42,7 +42,6 @@ export default {
 .navBar{
   display: flex;
   justify-content: space-between;
-  margin: 0;
   width: 100%;
   background: $color3;
   transition: 1s;

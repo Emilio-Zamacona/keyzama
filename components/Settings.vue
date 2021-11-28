@@ -117,7 +117,7 @@ export default {
     &__label{
       display: table-cell;
       vertical-align: middle;
-      color: $color3;
+      color: $color2;
       text-shadow: 0px 0px 3px black;
     }
     &__option{

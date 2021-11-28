@@ -81,7 +81,7 @@ export default {
     justify-content: center;
     align-items: center;
   &__title{
-    color: $color2;
+    color: $color3;
     text-align: center;
   }
   &__list{

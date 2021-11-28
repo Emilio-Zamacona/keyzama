@@ -35,7 +35,7 @@
 }
 .navButton{
   display: flex;
-  color: $color2;
+  color: $color3;
   font-size: 2rem;
   font-weight: lighter !important;
   user-select: none;
@@ -50,8 +50,9 @@
     transform: scale(1.1);
   }
   strong,h1,h2,h3,h4{
-    padding-inline: 1rem;
-    
-    
+    padding-inline: 1rem; 
   }
+}
+.menuButton{
+  
 }
