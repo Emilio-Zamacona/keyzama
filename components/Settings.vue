@@ -33,7 +33,7 @@
             :width="'50%'"
           /></vue-slider>
         </div>
-        <button @click="$store.commit('changeState',{stateValue:'settingsOpen',newValue:false})" class="settings__ok">Ok</button>
+        <button @click="$store.commit('changeState',{stateValue:'settingsOpen',newValue:false})" class="menuButton">Ok</button>
       </section> 
     </transition>
   </div>
@@ -133,26 +133,6 @@ export default {
       &:active{
         transform: scale(0.95);
       }
-    }
-  }
-  &__ok{
-    align-self: center;
-    background: linear-gradient(180deg,$color2, darken($color2,10%));
-    text-align: center;
-    border-style: none;
-    border-radius: 5px;
-    color: $color5;
-    transition: .2s;
-    width: 6rem;
-    height: 3rem;
-    &:hover{
-      transform:scale(1.05);
-    }
-    &:active{
-      transform: translateY(.125rem) scale(0.95);
-      background: linear-gradient(180deg,$color1, darken($color1,10%));
-      color: $color5;
-
     }
   }
 }

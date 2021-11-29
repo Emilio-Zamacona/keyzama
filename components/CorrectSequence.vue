@@ -2,11 +2,11 @@
 <div>
   <transition name="correctAppear">
     <div class="correct" v-if="roundWin&& !gameWin">
-      <div class="buttonBoxNotification">
-        <h1>{{st.strings.roundCompleted[getLang]}}</h1>
-        <h2>{{st.strings.roundPoints[getLang] + getRoundPoints}}</h2>
-        <h2>{{st.strings.totalPoints[getLang] + getTotalPoints}} </h2>
-        <button @click="()=>{winCheck()}" class="correct__box__button">{{st.strings.continue[getLang]}}</button>
+      <div class="gameModal">
+        <h2 class="gameModal__info">{{st.strings.roundCompleted[getLang]}}</h2>
+        <h3 class="gameModal__info">{{st.strings.roundPoints[getLang] + getRoundPoints}}</h3>
+        <h3 class="gameModal__info">{{st.strings.totalPoints[getLang] + getTotalPoints}} </h3>
+        <button @click="()=>{winCheck()}"  class="menuButton">{{st.strings.continue[getLang]}}</button>
       </div>
     </div>
   </transition>

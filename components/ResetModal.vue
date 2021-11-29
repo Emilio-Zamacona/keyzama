@@ -1,10 +1,10 @@
 <template>
   <div class="resetModal">
-    <div class="buttonBoxNotification">
-      <h2>{{st.strings.resetWarning[getLang]}}</h2>
-      <div>
-        <button @click="()=>{resetGame(); resetWarningOff()}">{{st.strings.change[getLang]}}</button>
-        <button @click="resetWarningOff()">{{st.strings.cancel[getLang]}}</button>
+    <div class="gameModal">
+      <p class="gameModal__info">{{st.strings.resetWarning[getLang]}}</p>
+      <div class="gameModal__buttonBox">
+        <button class="menuButton" @click="()=>{resetGame(); resetWarningOff()}">{{st.strings.change[getLang]}}</button>
+        <button class="menuButton" @click="resetWarningOff()">{{st.strings.cancel[getLang]}}</button>
       </div>
     </div>
   </div>
@@ -39,7 +39,8 @@ export default {
 <style lang="scss" scoped>
 
 .resetModal{
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(6px);
   position: absolute;
   top: 0;
   left: 0;
@@ -49,38 +50,5 @@ export default {
   justify-content: center;
   align-items: center;
   z-index: 3;
-  &__box{
-    padding: 2rem;
-    background-color: $color5;
-    border: $color2 solid 10px;
-    border-radius: 1rem;
-    max-width: 600px;
-    &__title{
-      padding: 2rem;
-      text-align: center;
-      color: $color1;
-    }
-    &__buttons{
-      display: flex;
-      justify-content: center;
-      &__item{
-        margin-inline:2rem;
-        padding: 1rem;
-        background-color: $color2;
-        color: $color5;
-        font-size: 2rem;
-        font-weight: 600;
-        border-radius: 1rem;
-        transition: .1s;
-        &:hover{
-          transform: scale(1.03);
-        }
-        &:active{
-          background-color: $color1;
-          color: $color2;
-        }
-      }
-    }
-  }
 }
 </style>

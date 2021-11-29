@@ -70,7 +70,7 @@ export default {
   min-height: 2.5rem;
   min-width: 28rem;
   border-radius: .5rem;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   padding: 1rem;
   user-select: none;
   @include respond(tablet){

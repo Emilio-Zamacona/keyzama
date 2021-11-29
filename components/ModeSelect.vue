@@ -96,7 +96,8 @@ export default {
         }
       }
       &__text{
-        font-size: .75em;
+        font-size: 1.25rem;
+        line-height: 2rem;
         @include respond(tablet){
           display: none;
         }
@@ -106,10 +107,10 @@ export default {
 }
 
 .resetFade-enter-active{
-  animation: resetFade .5s ease;
+  animation: resetFade .25s ease;
 }
 .resetFade-leave-active{
-  animation: resetFade .5s ease reverse;
+  animation: resetFade .25s ease reverse;
 }
 @keyframes resetFade{
   0%{opacity: 0%;}

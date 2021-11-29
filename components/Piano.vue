@@ -163,14 +163,9 @@ export default {
 }
 .--white{
   background: radial-gradient(ellipse at 0 0%,  #e8f8f3 50%, #bff6e5 100%);
-  max-height: 20rem;
-  height: 40vh;
+  height: 100%;
   width: 8%;
   z-index:1;
-  @include landscape{
-    height: 50vh;
-  }
-
   display: flex;
   justify-content: center;
   align-items:flex-end;
@@ -182,15 +177,11 @@ export default {
 }
 .--black{
   background: linear-gradient(290deg, rgb(15, 41, 42) 25%, rgb(32, 70, 70) 75%);
-  max-height: 13.5rem;
-  height: 30vh;
-  width: 4%;
+  height: 60%;
+  width: 4.5%;
   z-index:2;
-  margin:0 -2% 0 -2%;
+  margin:0 -2.25% 0 -2.25%;
   box-shadow: 2px 2px 3px 2px rgba(0, 0, 0, 0.356);
-  @include landscape{
-    height: 35h;
-  }
   display: flex;
   justify-content: center;
   align-items:flex-end;
@@ -232,11 +223,10 @@ export default {
     display: flex;
     justify-content: center;
     align-content: center;
+    height: 50vh;
     width: 100%;
-    max-width: 800px;
+    max-width: 60rem;
     box-shadow: 0 0 0 .25rem $color3;
-/*     border: solid .25rem $color3;
-    border-radius: 5px; */
     @include respond(smallest){
         margin-block: .25rem;
     }
@@ -257,11 +247,12 @@ export default {
         border: solid 1px black;
       }
       &__text{
-        font-size: .75rem;
+        font-size: .65rem;
+        font-weight: 40;
         margin-inline: 0;
         pointer-events: none;
-        @include respond(mobile){
-          font-size: .4rem;
+        @include respond(tablet){
+          font-size: .5rem;
         }
       }
     }
