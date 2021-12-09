@@ -2,10 +2,10 @@
   <div>
     <transition>
       <div class="win" v-if="gameWin">
-        <div class="buttonBoxNotification">
-          <h1>{{st.strings.victory[getLang]}}</h1>
-          <h2>{{st.strings.yourScore[getLang] + getTotalPoints}}</h2>
-          <button @click="winAndReset()">{{st.strings.goBack[getLang]}}</button>
+        <div class="gameModal">
+          <h1 class="gameModal__info">{{st.strings.victory[getLang]}}</h1>
+          <h2 class="gameModal__info">{{st.strings.yourScore[getLang] + getTotalPoints}}</h2>
+          <button class="menuButton" @click="winAndReset()">{{st.strings.goBack[getLang]}}</button>
         </div>
       </div>
     </transition>

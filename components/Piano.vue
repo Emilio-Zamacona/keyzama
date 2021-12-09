@@ -192,8 +192,6 @@ export default {
   }
 }
 .main{
-
-  height: 100%;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr;
@@ -210,11 +208,11 @@ export default {
 
   &__bar{
     width: 100%;
-    max-width: 800px;
+    max-width: 60rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    min-height: 7rem;
+    min-height: 5.5rem;
     @include respond(tablet){
       min-height: 4rem;
     }
@@ -226,7 +224,6 @@ export default {
     height: 50vh;
     width: 100%;
     max-width: 60rem;
-    box-shadow: 0 0 0 .25rem $color3;
     @include respond(smallest){
         margin-block: .25rem;
     }

@@ -66,6 +66,7 @@ export default {
   user-select: none;
   display: flex;
   place-items: center;
+  margin-right: .25rem;
   &__button{
     background: $color3;
     border-radius: 50%;

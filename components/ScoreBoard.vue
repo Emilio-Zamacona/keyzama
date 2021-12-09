@@ -65,6 +65,7 @@ export default {
   display: grid;
   grid-template-areas: 'a b c';
   grid-template-columns: 10% auto 10%;
+  margin-left: .25rem;
   background: $color3;
   color: $color5;
   min-height: 2.5rem;
