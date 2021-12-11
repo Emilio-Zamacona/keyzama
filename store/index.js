@@ -10,7 +10,9 @@ export const state = () => ({
   roundPoints:0,
   resetWarning:{open:false, mode:''},
   settingsOpen: false,
-  explicitNotes:true,
+  leaderBoardOpen: false,
+  helpOpen: false,
+  explicitNotes: true,
   timeBetweenNotes:1000,
   difficulties:{
     easy:{notesPerRound:3},
@@ -100,6 +102,18 @@ export const state = () => ({
     timeBetweenNotes:{eng:'Time between Notes',esp:'Tiempo entre Notas'},
     fast:{eng:'Fast',esp:'Rápido'},
     slow:{eng:'Slow',esp:'Lento'},
+    points:{eng:'points',esp:'puntos'},
+    topScores:{eng:'Top Scores',esp:'Mejores Puntajes'},
+    erase:{eng:'Erase',esp:'Borrar'},
+    eraseScores:{eng:'Erase Scores',esp:'Borrar Puntajes'},
+    eraseWarning:{eng:'You are about to delete your top scores, proceed?',esp:'Estás a punto de borrar tus mejores puntajes, proceder?'},
+    emptyLeaderBoard:{eng:'You don\'t have any top scores yet!',esp:'No tienes mejores puntajes todavía!'},
+    help:{eng:'Help',esp:'Ayuda'},
+    freeHelp:{eng:'Just a piano for you to play freely, there\'s no score with this one!',esp:'Sólo un piano para tocar libremente, este modo no tiene puntaje!'},
+    memoryHelp:{eng:'Memory game where you get more points the more you can remember a randomly generated melody, you can use your eyes and ears for this one',
+                esp:'Juego de memoria en el cual ganas mas puntos cuanto mejor recuerdes una melodía aleatoriamente seleccionada, puedes usar tanto tus ojos como tus oídos'},
+    guessHelp:{eng:'The same as the memory game, but this one doesn\'t have any visual cues, so you have to go purely by ear!',
+                esp:'Parecido al juego de memoria, pero este no tiene ningún tipo de indicación visual, por lo cual debes usar sólo tus oídos!'},
   } 
 })
 
@@ -131,6 +145,9 @@ export const getters = {
   getSettingsOpen:(state)=>{
     return state.settingsOpen
   },
+  getLeaderBoardOpen:(state)=>{
+    return state.leaderBoardOpen
+  },
   getExplicitNotes:(state)=>{
     return state.explicitNotes
   },
@@ -160,6 +177,9 @@ export const getters = {
   },
   getLang:(state)=>{
     return state.language
+  },
+  getHelpOpen:(state)=>{
+    return state.helpOpen
   },
   roundWin:(state)=>{
     if (state.secretNotes.length!=0){

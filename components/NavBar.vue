@@ -7,7 +7,16 @@
     </div>
     <transition name="modeAppearReverse">
       <ul v-if="getPlayMode!=''" class="navBar__options">
-
+        <li>
+          <fa @click="$store.commit('changeState',{stateValue:'helpOpen',newValue: !getHelpOpen}) " 
+              class="navBar__options__button" 
+              :icon="['fas','question-circle']" />
+        </li>
+        <li>
+          <fa @click="$store.commit('changeState',{stateValue:'leaderBoardOpen',newValue: !getLeaderBoardOpen}) " 
+              class="navBar__options__button" 
+              :icon="['fas','star']" />
+        </li>
         <li>
           <fa @click="$store.commit('changeState',{stateValue:'settingsOpen',newValue: !getSettingsOpen}) " 
               class="navBar__options__button" 
@@ -27,7 +36,17 @@ export default {
     } 
   },
   computed:{
-     ...mapGetters(["getCurrentGuess","getSecretNotes",'getLastNote','getPlayMode','getScales','getPiano','getRoundPoints','getSettingsOpen','getExplicitNotes']),
+     ...mapGetters(["getCurrentGuess",
+     "getSecretNotes",
+     'getLastNote',
+     'getPlayMode',
+     'getScales',
+     'getPiano',
+     'getRoundPoints',
+     'getLeaderBoardOpen',
+     'getSettingsOpen',
+     'getExplicitNotes',
+     'getHelpOpen']),
   },
   methods:{
     navBarHeight(){
@@ -38,7 +57,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+@import '@/assets/css/mixins.scss';
 .navBar{
   display: flex;
   justify-content: space-between;
@@ -61,6 +80,9 @@ export default {
       user-select: none;
       transition: 0.2s;
       padding-inline: 1rem;
+      @include respond(tablet){
+        font-size: 1.5rem;
+      }
       &:hover{
         cursor: pointer;
         color: $color1;

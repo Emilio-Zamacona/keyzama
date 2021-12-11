@@ -20,6 +20,12 @@
     </transition>
     <CorrectSequence/>
     <Win/>
+    <transition name="appear">
+      <Leaderboard v-if="getLeaderBoardOpen"/>
+    </transition>
+    <transition name="appear">
+      <Help v-if="getHelpOpen"/>
+    </transition>
     
     
   </section>
@@ -34,7 +40,15 @@ export default {
   },
   methods:{},
   computed:{
-    ...mapGetters(["getCurrentGuess","getSecretNotes","getTotalPoints","getRoundPoints","getPlayMode",'getRound','getLang']),
+    ...mapGetters(["getCurrentGuess",
+    "getSecretNotes",
+    "getTotalPoints",
+    "getRoundPoints",
+    "getPlayMode",
+    'getRound',
+    'getLang',
+    "getLeaderBoardOpen",
+    "getHelpOpen"]),
   }
 }
 </script>
@@ -98,4 +112,15 @@ export default {
   0%{transform: translateY(1000px);}
   100%{transform: translateY(0px)}
 } 
+
+.appear-enter-active{
+  animation: appear .5s ease;
+}
+.appear-leave-active{
+  animation: appear .2s reverse ease;
+}
+@keyframes appear{
+  0%{opacity: 0;}
+  100%{opacity: 1;}
+}
 </style>

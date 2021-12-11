@@ -1,6 +1,12 @@
 <template>
   <section class="mode">
     <ul class="mode__list">
+      <li @click="()=>{resetWarning('free');setPlayMode('free')}" class="navButton" :class="[selectedHighlight('free'), navColor()]">
+        <fa class="navButton__icon" :icon="['fas','music']" />
+        <strong class="navButton__text">
+          {{st.strings.free[getLang]}}
+        </strong> 
+      </li>
       <li @click="()=>{resetWarning('memory');setPlayMode('memory')}" class="navButton" :class="[selectedHighlight('memory'),navColor()]">
         <fa class="navButton__icon" :icon="['fas','brain']" />
         <strong class="navButton__text">
@@ -11,12 +17,6 @@
         <fa class="navButton__icon" :icon="['fas','headphones']" />
         <strong class="navButton__text">
           {{st.strings.guess[getLang]}}
-        </strong> 
-      </li>
-      <li @click="()=>{resetWarning('free');setPlayMode('free')}" class="navButton" :class="[selectedHighlight('free'), navColor()]">
-        <fa class="navButton__icon" :icon="['fas','music']" />
-        <strong class="navButton__text">
-          {{st.strings.free[getLang]}}
         </strong> 
       </li>
     </ul>

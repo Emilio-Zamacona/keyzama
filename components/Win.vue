@@ -5,7 +5,7 @@
         <div class="gameModal">
           <h1 class="gameModal__info">{{st.strings.victory[getLang]}}</h1>
           <h2 class="gameModal__info">{{st.strings.yourScore[getLang] + getTotalPoints}}</h2>
-          <button class="menuButton" @click="winAndReset()">{{st.strings.goBack[getLang]}}</button>
+          <button class="menuButton" @click="()=>{saveScore();winAndReset()}">{{st.strings.goBack[getLang]}}</button>
         </div>
       </div>
     </transition>
@@ -17,9 +17,27 @@ import { mapMutations } from 'vuex';
 import { mapGetters } from "vuex";
 export default {
     data:()=>{
-    return{}
+    return{
+      topScores:[]
+    }
+
   },
-  methods:{},
+  methods:{
+    saveScore(){
+      let date= new Date();
+      this.topScores.push({score:this.getTotalPoints,date:date.toLocaleString()})
+    }
+  },
+   mounted(){
+    if (localStorage.topScores){
+      this.topScores=JSON.parse(localStorage.getItem('topScores')) || []
+    }
+  },
+   watch:{
+    topScores(score){
+      localStorage.setItem('topScores',JSON.stringify(score))
+    }
+  },
   computed:{
     ...mapGetters(["getCurrentGuess","getSecretNotes","getTotalPoints","getRoundPoints","getPlayMode",'getRound','gameWin','getLang']),
   }

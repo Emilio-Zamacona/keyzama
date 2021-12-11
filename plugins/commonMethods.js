@@ -123,6 +123,7 @@ Vue.mixin({
       this.$store.commit('changeState',{stateValue:'round',newValue:0});
       this.$store.commit('changeState',{stateValue:'totalPoints',newValue:0});
       this.$store.commit('changeState',{stateValue:'roundPoints',newValue:0});
+      
     }
   },
 })
