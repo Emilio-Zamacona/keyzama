@@ -53,7 +53,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: baseline;
   @include landscape(){
     flex-direction: row;
   }
@@ -75,7 +75,8 @@ export default {
     justify-content: flex-start;
     align-items: center;
     margin: 1rem;
-    min-width: 5rem;
+    min-width: 33%;
+    max-width: 12rem;
     &__icon{
       font-size: 2rem;
       margin-bottom: 1rem;
