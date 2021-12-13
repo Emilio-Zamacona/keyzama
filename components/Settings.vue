@@ -72,7 +72,10 @@ export default {
     }
   },
   computed:{
-    ...mapGetters(["getCurrentGuess","getSecretNotes","getTotalPoints","getRoundPoints","getPlayMode",'getRound','getLang','getSettingsOpen','getChosenDifficulty']),
+    ...mapGetters(["getCurrentGuess","getSecretNotes","getTotalPoints","getRoundPoints","getPlayMode",'getRound','getLang','getSettingsOpen','getChosenDifficulty','getTimeBetweenNotes']),
+  },
+  mounted(){
+    this.timeBetweenNotes= this.getTimeBetweenNotes
   },
   watch:{
     timeBetweenNotes:function(newTime){

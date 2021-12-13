@@ -48,7 +48,32 @@ export default {
     'getRound',
     'getLang',
     "getLeaderBoardOpen",
-    "getHelpOpen"]),
+    "getHelpOpen",
+    "getChosenDifficulty",
+    "getTimeBetweenNotes",
+    "getExplicitNotes"]),
+  },
+  watch:{
+    getChosenDifficulty(newValue){
+      localStorage.setItem('chosenDifficulty',JSON.stringify(newValue))
+    },
+    getLang(newValue){
+      localStorage.setItem('language',JSON.stringify(newValue))
+    },
+    getExplicitNotes(newValue){
+      localStorage.setItem('explicitNotes',JSON.stringify(newValue))
+    },
+    getTimeBetweenNotes(newValue){
+      localStorage.setItem('timeBetweenNotes',JSON.stringify(newValue))
+    }
+  },
+  created(){
+    let settings = ['chosenDifficulty','language','timeBetweenNotes','explicitNotes']
+    for (let i = 0; i < settings.length; i++) {
+      if(localStorage[settings[i]]){
+        this.$store.commit('changeState',{stateValue:settings[i],newValue:JSON.parse(localStorage.getItem(settings[i]))}); 
+      }
+    }
   }
 }
 </script>
