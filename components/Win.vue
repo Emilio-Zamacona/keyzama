@@ -5,6 +5,7 @@
         <div class="gameModal">
           <h1 class="gameModal__info">{{st.strings.victory[getLang]}}</h1>
           <h2 class="gameModal__info">{{st.strings.yourScore[getLang] + getTotalPoints}}</h2>
+          <input class="gameModal__form" v-model="name" :placeholder="st.strings.yourName[getLang]" maxlength="12">
           <button class="menuButton" @click="()=>{saveScore();winAndReset()}">{{st.strings.goBack[getLang]}}</button>
         </div>
       </div>
@@ -18,14 +19,20 @@ import { mapGetters } from "vuex";
 export default {
     data:()=>{
     return{
-      topScores:[]
+      topScores:[],
+      name:''
     }
 
   },
   methods:{
     saveScore(){
       let date= new Date();
-      this.topScores.push({score:this.getTotalPoints,date:date.toLocaleString()})
+      this.topScores.push({
+        name: this.name,
+        score:this.getTotalPoints,
+        date:date.toLocaleString(),
+        chosenDifficulty:this.getChosenDifficulty,
+        playMode:this.getPlayMode})
     }
   },
    mounted(){
@@ -39,7 +46,7 @@ export default {
     }
   },
   computed:{
-    ...mapGetters(["getCurrentGuess","getSecretNotes","getTotalPoints","getRoundPoints","getPlayMode",'getRound','gameWin','getLang']),
+    ...mapGetters(["getCurrentGuess","getSecretNotes","getTotalPoints","getRoundPoints","getPlayMode",'getRound','gameWin','getLang','getChosenDifficulty']),
   }
 }
 </script>

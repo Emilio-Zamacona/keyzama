@@ -114,6 +114,8 @@ export const state = () => ({
                 esp:'Juego de memoria en el cual ganas mas puntos cuanto mejor recuerdes una melodía aleatoriamente seleccionada, puedes usar tanto tus ojos como tus oídos'},
     guessHelp:{eng:'The same as the memory game, but this one doesn\'t have any visual cues, so you have to go purely by ear!',
                 esp:'Parecido al juego de memoria, pero este no tiene ningún tipo de indicación visual, por lo cual debes usar sólo tus oídos!'},
+    yourName:{eng:'Your Name',esp:'Tu nombre'},
+    madeBy:{eng:'Made by Emilio Zamacona',esp:'Hecho por Emilio Zamacona'},
   } 
 })
 

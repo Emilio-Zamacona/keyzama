@@ -34,6 +34,11 @@
           /></vue-slider>
         </div>
         <button @click="$store.commit('changeState',{stateValue:'settingsOpen',newValue:false})" class="menuButton">Ok</button>
+        <div class="settings__contact">
+          <h3 class="settings__contact__author">{{st.strings.madeBy[getLang]}} </h3>
+          <a href="https://linkedin.com/in/emilio-zamacona"><fa class="settings__contact__icon" :icon="['fab','linkedin']"/></a>
+          <a href="https://github.com/Emilio-Zamacona"><fa class="settings__contact__icon" :icon="['fab','github-square']"/></a>
+        </div>
       </section> 
     </transition>
   </div>
@@ -97,6 +102,38 @@ export default {
   font-size: 1.5rem;
   @include respond(tablet){
     font-size: 1rem;
+  }
+  &__contact{
+    margin: 2rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+    @include respond(tablet){
+      margin:.5rem;
+    }
+    &__author{
+      color: $color2;
+      font-weight: 400;
+      text-align: right;
+      text-shadow: 0px 0px 3px black;
+    }
+    &__icon{
+      color: $color6;
+      font-size: 3rem;
+      transition: .2s ease;
+      @include respond(tablet){
+        font-size: 2rem;
+      }
+      &:hover{
+        color: $color1;
+        transform: scale(1.1);
+      }
+      &:active{
+        transform: scale(.9);
+      }
+    }
+
   }
   &__container{
     margin: 2rem;

@@ -78,6 +78,10 @@ export default {
     &__description{
       text-align: center;
       color: $color1;
+      font-size: 1rem;
+      @include respond(tablet){
+        font-size: 0.75rem;
+      }
     }
   }
 }

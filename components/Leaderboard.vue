@@ -6,8 +6,13 @@
     </div>
     <div v-else class="gameModal">
       <h2 class="gameModal__info">{{st.strings.topScores[getLang]}}</h2>
+
       <ul class="leaderBoard__list">
         <li class="leaderBoard__list__item gameModal__info " v-for="item in topScores" :key="item.id">
+          <fa class="leaderBoard__list__item__icon" v-if="item.playMode=='memory'" :icon="['fas','brain']" />
+          <fa class="leaderBoard__list__item__icon" v-else :icon="['fas','headphones']" />
+          <p class="leaderBoard__list__item__score">{{st.strings[item.chosenDifficulty][getLang]}}</p>
+          <p class="leaderBoard__list__item__score">{{item.name}}</p>
           <p class="leaderBoard__list__item__score">{{item.score+' '+st.strings.points[getLang]}}</p>
           <p class="leaderBoard__list__item__date">{{item.date}}</p>
         </li>
@@ -16,12 +21,11 @@
         <button class="menuButton" @click="eraseWarningOpen(true)">{{st.strings.eraseScores[getLang]}}</button>      
         <button class="menuButton" @click="$store.commit('changeState',{stateValue:'leaderBoardOpen',newValue:!getLeaderBoardOpen})">{{st.strings.goBack[getLang]}}</button>
       </div>
-      <div v-if="eraseWarning">
-        <h2 class="gameModal__info">{{st.strings.eraseWarning[getLang]}}</h2>
-        <div>
-          <button class="menuButton" @click="()=>{erase();eraseWarningOpen(false)}">{{st.strings.erase[getLang]}}</button>
-          <button class="menuButton" @click="eraseWarningOpen(false)">{{st.strings.cancel[getLang]}}</button>        
-        </div>
+      <div class="erase" v-if="eraseWarning">
+        <h3 class="gameModal__info">{{st.strings.eraseWarning[getLang]}}</h3>
+        <button class="menuButton" @click="()=>{erase();eraseWarningOpen(false)}">{{st.strings.erase[getLang]}}</button>
+        <button class="menuButton" @click="eraseWarningOpen(false)">{{st.strings.cancel[getLang]}}</button>        
+
       </div>
     </div>
   </section>
@@ -64,14 +68,20 @@ export default {
     }
   },
     computed:{
-    ...mapGetters(['getLeaderBoardOpen','getLang']),
+    ...mapGetters(['getLeaderBoardOpen','getLang','getChosenDifficulty']),
   }
 }
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/css/mixins.scss';
 ul{
   list-style: none;
+}
+.erase{
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 .leaderBoard{
   &__list{
@@ -79,10 +89,14 @@ ul{
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      &__score{
-        margin-right: 1rem;
+      margin-bottom: .25rem;
+      gap: .5rem;
+      @include respond(tablet){
+        font-size: .75rem;
       }
+      &__score{}
       &__date{}
+      &__icon{}
     }
   }
 }
