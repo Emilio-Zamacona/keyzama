@@ -1,4 +1,17 @@
 @import '@/assets/css/mixins.scss';
+.darkBackground{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: -webkit-fill-available;
+  z-index: 4;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(6px);
+}
 .gameModal{
   background: linear-gradient(-30deg ,$color4,lighten($color4,20%));
   padding: 3rem;

@@ -1,5 +1,5 @@
 <template>
-  <section class="leaderBoard">
+  <section class="darkBackground">
     <div class="gameModal" v-if="topScores.length==0">
       <h2 class="gameModal__info">{{st.strings.emptyLeaderBoard[getLang]}} </h2>
       <button class="menuButton" @click="$store.commit('changeState',{stateValue:'leaderBoardOpen',newValue:!getLeaderBoardOpen})">{{st.strings.goBack[getLang]}}</button>
@@ -74,16 +74,6 @@ ul{
   list-style: none;
 }
 .leaderBoard{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 4;
-  background: rgba(0, 0, 0, 0.75);
   &__list{
     &__item{
       display: flex;

@@ -92,7 +92,7 @@ export default {
   background: $color4;
   z-index: 4;
   width: 100%;
-  height: 100%;
+  min-height: -webkit-fill-available;
   border-top: .125rem solid $color1;
   font-size: 1.5rem;
   @include respond(tablet){

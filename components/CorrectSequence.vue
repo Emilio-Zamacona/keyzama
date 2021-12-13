@@ -1,7 +1,7 @@
 <template>
 <div>
   <transition name="correctAppear">
-    <div class="correct" v-if="roundWin&& !gameWin">
+    <div class="darkBackground" v-if="roundWin&& !gameWin">
       <div class="gameModal">
         <h2 class="gameModal__info">{{st.strings.roundCompleted[getLang]}}</h2>
         <h3 class="gameModal__info">{{st.strings.roundPoints[getLang] + getRoundPoints}}</h3>
@@ -52,20 +52,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-.correct{
-  background: rgba(0, 0, 0, 0.75);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 4;
-
-}
 
 .correctAppear-enter-active{
   animation: correctAppear .5s ease;

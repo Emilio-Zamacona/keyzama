@@ -1,5 +1,5 @@
 <template>
-  <div class="resetModal">
+  <div class="darkBackground">
     <div class="gameModal">
       <p class="gameModal__info">{{st.strings.resetWarning[getLang]}}</p>
       <div class="gameModal__buttonBox">
@@ -38,17 +38,4 @@ export default {
 
 <style lang="scss" scoped>
 
-.resetModal{
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(6px);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 3;
-}
 </style>

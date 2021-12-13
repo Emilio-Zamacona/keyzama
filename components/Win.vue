@@ -1,7 +1,7 @@
 <template>
   <div>
     <transition>
-      <div class="win" v-if="gameWin">
+      <div class="darkBackground" v-if="gameWin">
         <div class="gameModal">
           <h1 class="gameModal__info">{{st.strings.victory[getLang]}}</h1>
           <h2 class="gameModal__info">{{st.strings.yourScore[getLang] + getTotalPoints}}</h2>
@@ -45,18 +45,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.win{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 4;
-  background: rgba(0, 0, 0, 0.75);
-  
-}
 
 </style>
