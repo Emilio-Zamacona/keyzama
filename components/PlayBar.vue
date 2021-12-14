@@ -2,12 +2,12 @@
   <section class="playBar" >
     <transition name="playBarAppear" mode="out-in">
       <div v-if="getSecretNotes.length!=0">
-        <fa :icon="['fas','play-circle']" class="playBar__button" @click="playSequence()"/>
+        <fa :icon="['fas','volume-up']" class="playBar__button" @click="playSequence()"/>
       </div>
     </transition>
     <transition name="playBarAppear" mode="out-in">
       <div v-if="getSecretNotes.length!=0">
-        <fa :icon="['fas','sync-alt']" 
+        <fa :icon="['fas','dice']" 
           class="playBar__button" @click="()=>{newSequence(this.$store.state.difficulties[this.getChosenDifficulty].notesPerRound,this.getChosenScale);playSequence()}"/>
       </div>
     </transition>
@@ -67,6 +67,7 @@ export default {
   display: flex;
   place-items: center;
   margin-right: .25rem;
+  gap: .125rem;
   &__button{
     background: $color3;
     border-radius: 50%;
@@ -75,8 +76,12 @@ export default {
     color: $color5;
     transition: 0.1s;
     padding: .75rem;
-    margin:0px;
+    cursor: pointer;
+    height: 2rem;
+    width:2rem;
     @include respond(tablet){
+      height: 1.5rem;
+      width:1.5rem;
       font-size: 1.5em;
       padding: .5rem;
       @include landscape{

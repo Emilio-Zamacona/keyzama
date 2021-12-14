@@ -77,7 +77,7 @@ export default {
   @include respond(tablet){
     font-size: .75rem;
     padding: .25rem;
-    width:10rem ;
+    width:9rem ;
     min-width: 50%;
     grid-template-columns: 25% auto 25%;
     height: 2rem;

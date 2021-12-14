@@ -15,7 +15,7 @@
     }
   }
   @if $breakpoint==smallest {
-    @media only screen and (max-height: 325px) {
+    @media only screen and (max-height: 480px) {
       @content;
     }
   }
@@ -23,7 +23,12 @@
 
 @mixin landscape (){
   @media screen and(orientation:landscape){
-    @content
-    
+    @content;
+  }
+}
+
+@mixin portrait (){
+  @media screen and(orientation:portrait){
+    @content 
   }
 }

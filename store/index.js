@@ -82,7 +82,7 @@ export const state = () => ({
     memory:{eng:'Memory',esp:'Memoria'},
     guess:{eng:'Ear training',esp:'Audioperceptiva'},
     free:{eng:'Free',esp:'Libre'},
-    pressPlay:{eng:'Press play to start',esp:'Presiona jugar para comenzar'},
+    pressPlay:{eng:'Press to start',esp:'Presiona para comenzar'},
     roundCompleted:{eng:'Round Completed!',esp:'Ronda Completada!'},
     roundPoints:{eng:'Round Points: ',esp:'Puntos de Ronda: '},
     totalPoints:{eng:'Total Points: ', esp:'Puntos Totales: '},
@@ -109,11 +109,24 @@ export const state = () => ({
     eraseWarning:{eng:'You are about to delete your top scores, proceed?',esp:'Estás a punto de borrar tus mejores puntajes, proceder?'},
     emptyLeaderBoard:{eng:'You don\'t have any top scores yet!',esp:'No tienes mejores puntajes todavía!'},
     help:{eng:'Help',esp:'Ayuda'},
-    freeHelp:{eng:'Just a piano for you to play freely, there\'s no score with this one!',esp:'Sólo un piano para tocar libremente, este modo no tiene puntaje!'},
-    memoryHelp:{eng:'Memory game where you get more points the more you can remember a randomly generated melody, you can use your eyes and ears for this one',
-                esp:'Juego de memoria en el cual ganas mas puntos cuanto mejor recuerdes una melodía aleatoriamente seleccionada, puedes usar tanto tus ojos como tus oídos'},
-    guessHelp:{eng:'The same as the memory game, but this one doesn\'t have any visual cues, so you have to go purely by ear!',
-                esp:'Parecido al juego de memoria, pero este no tiene ningún tipo de indicación visual, por lo cual debes usar sólo tus oídos!'},
+    freeHelp:{
+      eng:'Just a piano for you to play freely, there\'s no score with this one!',
+      esp:'Sólo un piano para tocar libremente, este modo no tiene puntaje!'},
+    memoryHelp:{
+      eng:'Memory game where you get more points the more you can remember a randomly generated melody, you can use your eyes and ears for this one',
+      esp:'Juego de memoria en el cual ganas mas puntos cuanto mejor recuerdes una melodía aleatoriamente seleccionada, puedes usar tanto tus ojos como tus oídos'},
+    guessHelp:{
+      eng:'The same as the memory game, but this one doesn\'t have any visual cues, so you have to go purely by ear!',
+      esp:'Parecido al juego de memoria, pero este no tiene ningún tipo de indicación visual, por lo cual debes usar sólo tus oídos!'},
+    listenHelp:{
+      eng:'This lets you listen one more time to the current melody, but it takes one point from your score',
+      esp:'Sirve para escuchar nuevamente la melodía actual, pero le resta uno a tu puntaje'},
+    newSequenceHelp:{
+      eng:'This skips straight to the next melody, but you don\'t get any points from the current one. Use only when stuck!',
+      esp:'Sirve para pasar a la siguiente melodía, pero no ganas puntos por la melodía actual. Sólo usar cuando no puedas avanzar!'},
+    visibleNotesHelp:{
+      eng:'This simply show/hides the name of the notes on the keyboard',
+      esp:'Simplemente muestra/oculta los nombres de las notas en el piano'},      
     yourName:{eng:'Your Name',esp:'Tu nombre'},
     madeBy:{eng:'Made by Emilio Zamacona',esp:'Hecho por Emilio Zamacona'},
   } 

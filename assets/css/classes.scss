@@ -30,6 +30,9 @@
       margin-bottom: 1.5rem;
     }
   }
+  @include respond(smallest){
+    padding: 1rem;
+  }
   &__form{
     border: none;
     margin: 2rem;
@@ -37,6 +40,9 @@
     border-radius: 4px;
     &:focus{
       border: 3px solid $color2;
+    }
+    @include respond(smallest){
+      margin: 0;
     }
 
   }
@@ -82,6 +88,7 @@
   transition: .2s;
   min-width: 6rem;
   min-height: 3rem;
+  cursor: pointer;
   &:hover{
     transform:scale(1.05);
   }

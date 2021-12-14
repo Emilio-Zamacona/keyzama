@@ -48,9 +48,7 @@ export default {
     resetWarning: function(mode){
       if (this.getSecretNotes.length!=0 || this.getCurrentGuess.length!=0 || this.getLastNote!='' || this.getTotalPoints!=0){
         this.$store.commit('changeState',{stateValue : 'resetWarning' , newValue : {open:true,mode:mode}})
-        console.log(this.getSecretNotes!=[],this.getCurrentGuess!=[],this.getLastNote!='',this.getTotalPoints!=0)
-        console.log('reset prompt')
-      } else {console.log('nothing to reset')}
+      }
     },
     selectedHighlight:function(mode){
       if (this.getPlayMode==mode){
