@@ -2,13 +2,20 @@
   <section class="playBar" >
     <transition name="playBarAppear" mode="out-in">
       <div v-if="getSecretNotes.length!=0">
-        <fa :icon="['fas','volume-up']" class="playBar__button" @click="playSequence()"/>
+        <fa 
+        :icon="['fas','volume-up']" 
+        class="playBar__button"
+        :class="isBlocked()" 
+        @click="playSequence()"/>
       </div>
     </transition>
     <transition name="playBarAppear" mode="out-in">
       <div v-if="getSecretNotes.length!=0">
-        <fa :icon="['fas','dice']" 
-          class="playBar__button" @click="()=>{newSequence(this.$store.state.difficulties[this.getChosenDifficulty].notesPerRound,this.getChosenScale);playSequence()}"/>
+        <fa 
+        :icon="['fas','dice']"
+        :class="isBlocked()" 
+        class="playBar__button" 
+        @click="()=>{newSequence(this.$store.state.difficulties[this.getChosenDifficulty].notesPerRound,this.getChosenScale);playSequence()}"/>
       </div>
     </transition>
     <div @click="$store.commit('changeState',{stateValue:'explicitNotes',newValue: !getExplicitNotes}) " >
@@ -30,7 +37,11 @@ export default {
       }
     }
  },
-  methods:{},
+  methods:{
+    isBlocked(){
+      if (this.getLastNote!='') return '--blocked'
+    }
+  },
   components:{},
   computed:{
   ...mapGetters(["getCurrentGuess",
@@ -60,6 +71,16 @@ export default {
   left: 0px;
   z-index: 6;
   
+}
+.--blocked{
+  filter: brightness(0.5);
+  &:hover{
+    color: $color5 !important;
+    cursor: not-allowed !important;
+  }
+  &:active{
+    transform: scale(1) !important;
+  }
 }
 
 .playBar{
@@ -97,16 +118,19 @@ export default {
   }
 }
 .playBarAppear-enter-active {
-  animation: playBarAppear .7s linear;
+  animation: playBarAppear .5s ease;
 }
 .playBarAppear-leave-active {
-  animation: playBarAppear .7s reverse linear;
+  animation: playBarAppear .5s reverse ease;
 }
+
 @keyframes playBarAppear{
-  0%{transform: rotate(0deg) scale(0) translate(-200px , 0px);}
-  15%{transform: rotate(120deg) scale(0.15) translate(-100px , 0px);}
-  50%{transform: rotate(360deg) scale(1.25) translate(0px , 0px);}
-  100%{transform: rotate(720deg) scale(1) translate(0px , 0px);}
+  0%{
+    opacity: 0;
+    transform: scale(0) translate(0px , 5rem);}
+  100%{
+    opacity: 1;
+    transform: scale(1) translate(0px , 0px);}
 }
 
 </style>

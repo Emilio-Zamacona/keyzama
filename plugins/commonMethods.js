@@ -52,46 +52,50 @@ Vue.mixin({
   },
   methods: {
     newSequence(noteAmount,scale){
-      const tonic = Math.floor(Math.random() * 12);
-      const notes = [];
-      const selectedScale = this.getScales[scale][tonic];
-      const finalNotes = [];
-      for (let i = 0; i < noteAmount; i++) {
-        notes.push(selectedScale.notes[Math.floor(Math.random()*selectedScale.notes.length)])
-      };
-      for (let i = 0; i < noteAmount; i++) {
-        const key = this.getPiano[Math.floor(Math.random()*this.getPiano.length)].name
-        const note = key.replace(/[0-9]/g, '');
-
-        if (notes.includes(note)){
-          finalNotes.push(key.replace(/S/g, '#'))
-        } else{
-          i -=1
+      if (this.getLastNote==''){
+        const tonic = Math.floor(Math.random() * 12);
+        const notes = [];
+        const selectedScale = this.getScales[scale][tonic];
+        const finalNotes = [];
+        for (let i = 0; i < noteAmount; i++) {
+          notes.push(selectedScale.notes[Math.floor(Math.random()*selectedScale.notes.length)])
+        };
+        for (let i = 0; i < noteAmount; i++) {
+          const key = this.getPiano[Math.floor(Math.random()*this.getPiano.length)].name
+          const note = key.replace(/[0-9]/g, '');
+  
+          if (notes.includes(note)){
+            finalNotes.push(key.replace(/S/g, '#'))
+          } else{
+            i -=1
+          }
         }
+        this.$store.commit("changeState",{stateValue : 'secretNotes', newValue : finalNotes});
+        this.$store.commit("changeState",{stateValue : 'currentGuess', newValue : [] });
+        this.$store.commit("changeState",{stateValue : 'roundPoints', newValue : 1+noteAmount*2});
       }
-      this.$store.commit("changeState",{stateValue : 'secretNotes', newValue : finalNotes});
-      this.$store.commit("changeState",{stateValue : 'currentGuess', newValue : [] });
-      this.$store.commit("changeState",{stateValue : 'roundPoints', newValue : 1+noteAmount*2});
     },
     playSequence(){
-      const sequence = this.$store.state.secretNotes;
-      const st = this.$store;
-      if (st.state.lastNote==''){
-        this.changePoints(-1);
-        for (let index = 0; index < sequence.length; index++) {
-          setTimeout(function() {
-            if((st.state.playMode!='free') && (st.state.resetWarning.open==false)){
-              sampler.triggerAttackRelease(sequence[index].replace(/S/g, "#"),0.8);
-              st.commit('changeState',{stateValue : 'lastNote' , newValue : sequence[index].replace(/S/g, "#")})
-            } else{
-              st.commit('changeState',{stateValue : 'lastNote' , newValue : ''});
-              st.commit('changeState',{stateValue : 'secretNotes' , newValue : []});
-              }
-          },st.state.timeBetweenNotes*index)
-        };
-        setTimeout(function(){
-          st.commit('changeState',{stateValue : 'lastNote' , newValue : ''})
-        }, (sequence.length+1)*st.state.timeBetweenNotes)
+      if (this.getLastNote==''){
+        const sequence = this.$store.state.secretNotes;
+        const st = this.$store;
+        if (st.state.lastNote==''){
+          this.changePoints(-1);
+          for (let index = 0; index < sequence.length; index++) {
+            setTimeout(function() {
+              if((st.state.playMode!='free') && (st.state.resetWarning.open==false)){
+                sampler.triggerAttackRelease(sequence[index].replace(/S/g, "#"),0.8);
+                st.commit('changeState',{stateValue : 'lastNote' , newValue : sequence[index].replace(/S/g, "#")})
+              } else{
+                st.commit('changeState',{stateValue : 'lastNote' , newValue : ''});
+                st.commit('changeState',{stateValue : 'secretNotes' , newValue : []});
+                }
+            },st.state.timeBetweenNotes*index)
+          };
+          setTimeout(function(){
+            st.commit('changeState',{stateValue : 'lastNote' , newValue : ''})
+          }, (sequence.length+1)*st.state.timeBetweenNotes)
+        }
       }
     },
     isCorrect(){
